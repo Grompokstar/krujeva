@@ -1,0 +1,37 @@
+<% var columns = widget.gridColumns(); %>
+<% var actions = widget.gridActions(); %>
+<tr on-click="onItemSelectClick">
+	<% Util.each(columns, function (column) { %>
+	<td class="gridview-column" data-column-name="<%= Html.encode(column.name) %>">
+		<%= widget.gridColumnContent(column, item) %>
+	</td>
+	<% }); %>
+	<% Util.each(actions, function (action) { %>
+	<%
+		var enabled = true;
+
+		if (Util.isDefined(action.enabled)) {
+			if (Util.isFunction(action.enabled)) {
+				enabled = !!action.enabled(item);
+			} else {
+				enabled = !!action.enabled;
+			}
+		}
+    %>
+	<% if (enabled) { %>
+	<td class="gridview__action" <%= action["on-click"] ? 'on-click="' + action["on-click"] + '"' : '' %> <%= action["name"] ? 'data-name="' + action["name"] + '"' : '' %>>
+		<div
+			<%= action.css ? 'class="' + action.css + '"' : '' %>
+			<%= action.title ? 'title="' + Html.encode(action.title) + '"' : '' %>
+			>
+			<%= action.title && !action.css ? Html.encode(action.title) : "" %>
+		</div>
+	</td>
+	<% } else { %>
+	<td class="gridview__action">
+		<div>
+		</div>
+	</td>
+	<% } %>
+	<% }); %>
+</tr>

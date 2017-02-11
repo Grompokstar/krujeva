@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cp -r . /usr/local/lib/lua/resty/
+
+nginx -s reload

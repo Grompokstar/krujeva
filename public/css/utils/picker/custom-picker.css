@@ -1,0 +1,139 @@
+.ui-datepicker {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+
+    border: 3px solid #e2e2e2;
+
+    box-shadow: 4px 5px 40px rgba(0,0,0,.15);
+
+    z-index: 20 !important;
+}
+
+
+
+.ui-widget-header {
+    border: none;
+    background: transparent;
+}
+
+.ui-widget-header .ui-datepicker-title {
+    font-weight: normal;
+}
+
+table.ui-datepicker-calendar th {
+    text-transform: lowercase;
+    color: #999;
+    font-weight: normal;
+}
+
+table.ui-datepicker-calendar td a {
+    text-align: center;
+}
+
+table.ui-datepicker-calendar td a.ui-state-default {
+    background: #F7F5F5;
+    border: 0px;
+    padding: 5px;
+}
+
+
+table.ui-datepicker-calendar td a.ui-state-default.ui-state-highlight,
+table.ui-datepicker-calendar td a.ui-state-default.ui-state-highlight:hover {
+    background: #e2e2e2;
+    text-shadow: 1px 1px 0px #fff;
+}
+
+table.ui-datepicker-calendar td a.ui-state-default.ui-state-active,
+table.ui-datepicker-calendar td a.ui-state-default.ui-state-active:hover
+{
+    color: #fff !important;
+    background: #0288D1;
+    text-shadow: none;
+}
+
+table.ui-datepicker-calendar td a.ui-state-default:hover {
+    background: #e2e2e2;
+}
+
+.ui-datepicker-prev,
+.ui-datepicker-next
+{
+    opacity: .5;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default
+{
+    color: #444;
+}
+
+/*timepicker*/
+.ui-timepicker-div .ui_tpicker_time_label,
+.ui-timepicker-div .ui_tpicker_time,
+.ui-timepicker-div + .ui-datepicker-buttonpane
+{
+    display: none;
+}
+
+.ui-timepicker-div .ui_tpicker_hour_label,
+.ui-timepicker-div .ui_tpicker_minute_label
+{
+    margin-left: 5px;
+    color: #333;
+    font-size: 14px;
+}
+
+.ui-timepicker-div  .ui_tpicker_hour,
+.ui-timepicker-div  .ui_tpicker_minute
+{
+    margin: 0px;
+    padding: 5px 10px;
+}
+
+.ui-timepicker-div .ui_tpicker_hour_slider,
+.ui-timepicker-div .ui_tpicker_minute_slider
+{
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+
+    border: none;
+    background: #f5f5f5;
+}
+
+.ui-timepicker-div a.ui-state-default {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border: none;
+    cursor: pointer;
+}
+
+.ui-timepicker-div .ui_tpicker_hour_slider, .ui-timepicker-div .ui_tpicker_minute_slider {
+    height: 11px;
+}
+
+.ui-timepicker-div a.ui-state-default {
+    background: #0288D1;
+    outline: none !important;
+}
+
+.ui-timepicker-div {
+    padding: 5px 10px 10px 10px;
+}
+
+.ui-timepicker-div .ui-datepicker-title {
+    margin: 0;
+    text-align: left;
+    font-size: 16px;
+}
+
+.ui_tpicker_minute_label,
+.ui_tpicker_hour_label
+{
+    margin-top: 10px;
+    margin-left: 0 !important;
+}

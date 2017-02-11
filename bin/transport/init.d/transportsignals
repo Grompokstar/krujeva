@@ -1,0 +1,93 @@
+#!/bin/sh
+#
+# chkconfig: - 90 10
+# description: run transport signals service
+#
+
+scriptname="Transport Signals"
+logdir="/var/log/glonass/transport"
+scriptdir="/usr/local/www/mintrans/emergency"
+
+logfile="${logdir}/signals.log"
+script="php ${scriptdir}/bin/periodical.php"
+scriptoptions="--app=transport --class=\"Transport\Periodical\LastSignals\" --interval=5"
+user="nginx"
+
+# Check that networking is up
+[ "$NETWORKING" = "no" ] && exit 0
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+check () {
+	proc_cnt=`ps ax | grep -v grep | grep "$script"`
+
+	if [ "$proc_cnt" == "" ]; then
+		RETVAL="2"
+	else
+		RETVAL="0"
+	fi
+}
+
+start () {
+	check
+
+	if [ $RETVAL == 0 ]; then
+		echo "Already running. Aborting."
+	else
+		echo -n "Starting $scriptname: "
+
+		runuser -l "$user" -c "$script $scriptoptions >> $logfile 2>&1 &" && echo_success || echo_failure
+
+		RETVAL=$?
+		echo
+		[ $RETVAL -eq 0 ]
+		return $RETVAL
+	fi
+}
+
+stop () {
+	check
+
+	if [ $RETVAL == 2 ]; then
+		echo "Already stopped. Aborting."
+	else
+		echo -n "Stopping $scriptname: "
+		pid=`ps ax | grep -v grep | grep "$script" | grep -o -P "^\s*\d+"`
+		kill -15 $pid > /dev/null 2>&1 && echo_success || echo_failure
+
+		RETVAL=$?
+		echo
+		[ $RETVAL -eq 0 ]
+		return $RETVAL
+	fi
+}
+
+status () {
+	check
+
+	if [ $RETVAL == 2 ]; then
+		echo "$scriptname stopped"
+    else
+    	echo "$scriptname is running"
+	fi
+}
+
+case $1 in
+    start)
+	start
+	;;
+    stop)
+	stop
+	;;
+    restart)
+	stop
+	start
+	;;
+    status)
+	status $script
+	;;
+    *)
+	echo "Usage: $0 {start|stop|restart|status}"
+	;;
+esac

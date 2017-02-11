@@ -1,0 +1,30 @@
+body {
+    /*-webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;*/
+
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-tap-highlight-color: transparent;
+
+    overflow: hidden;
+    color: #323B49;
+}
+
+.auth-block {
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    padding: 35px 45px;
+
+    width: 350px;
+}
+
+.auth-title {
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.auth-row {
+    margin-top: 15px;
+}

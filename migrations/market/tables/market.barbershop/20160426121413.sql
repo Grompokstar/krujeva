@@ -1,0 +1,1 @@
+alter table market.barbershop add column salonname varchar;

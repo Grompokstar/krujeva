@@ -1,0 +1,17 @@
+<% var checked = pgIntArrayDecode(widget.item[column.name]) %>
+
+<% column.enum.each(function (value) { %>
+<div>
+	<label>
+		<input
+			type="checkbox"
+			data-column="<%= column.name %>"
+			value="<%= value %>"
+			on-click="onPGEnumChecksColumnClick"
+			<%= ~checked.indexOf(+value) ? "checked" : "" %>
+			>
+
+		<span><%= Html.encode(column.enum.title(value)) %></span>
+	</label>
+</div>
+<% }) %>

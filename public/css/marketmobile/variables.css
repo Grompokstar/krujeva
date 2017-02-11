@@ -1,0 +1,27 @@
+:root {
+    --mainColor: #0288D1; /*#EC407A*/
+
+    --titleFontSize: 17px;
+    --labelFontSize: 10px;
+
+    /**/
+    --tabColor: #F0EEF0;
+    --cardHrColor: #F3F3F3;
+
+    /*Form*/
+    --lineColorNormal: #e5e5e5;
+    --lineColorActive: #379AFF;
+    --lineColorCheck: #31AA2B;
+    --lineColorError: #E97656;
+
+	/**/
+    --linkColor: #379AFF;
+    --textColorNormal: #000;
+	--textColorDisabled: #B3B3BC;
+
+	--menuColor: #222222;
+	--notification: #EF5B5E;
+
+    --paddingCard: 20px;
+    --paddingApp: 10px;
+}

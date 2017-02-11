@@ -1,0 +1,11 @@
+<% var pagesCount = ~~Math.ceil(widget.gridCount/widget.gridLimit) %>
+
+<% for (var i = 0; i < pagesCount; i++) { %>
+
+<% var from = i * widget.gridLimit + 1 %>
+<% var to = from + widget.gridLimit - 1 %>
+<% if (to > widget.gridCount) to = widget.gridCount %>
+
+<option value="<%= i %>" <%= i == widget.gridPage ? "selected" : ""%>><%= from %> - <%= to %></option>
+
+<% } %>

@@ -1,0 +1,13 @@
+.status-filter-user {
+    width: 200px;
+}
+
+.user-list-item {
+    border-bottom: 1px solid #e5e5e5;
+    padding: 20px;
+}
+
+.user-list-item:hover {
+    background: #F1FDFF;
+    cursor: pointer;
+}

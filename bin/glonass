@@ -1,0 +1,561 @@
+#!/usr/bin/php
+<?php
+
+$PROJECT_PATH = realpath(dirname(__FILE__) . '/..');
+
+$CONFIG_NAME = null;
+
+class Type {
+	const Table = 0;
+	const Func = 1;
+	const Index = 2;
+	const SQL = 3;
+}
+
+function createItem($type, $name, $content = '') {
+	global $PROJECT_PATH;
+
+	list ($schemaName, ) = explode('.', $name);
+
+	$content .= "\n";
+	$typeFolder = typeFolder($type);
+	$path = $PROJECT_PATH . "/migrations/$schemaName/$typeFolder/$name";
+	$filePath = $path . '/' . date('YmdHis') . '.sql';
+
+	if (!is_dir($path)) {
+		mkdir($path, 0755, true);
+	}
+
+	echo "create file: $filePath\n";
+
+	file_put_contents($filePath, $content);
+}
+
+function createTable($name, $options = []) {
+	createItem(Type::Table, $name, "create table $name (\n\tid bigserial primary key\n) without oids;");
+
+	if (isset($options['trackable']) && $options['trackable']) {
+		sleep(1);
+		createTrackable($name);
+	}
+}
+
+function createFunction($name) {
+	createItem(Type::Func, $name, "create or replace function $name()\n\treturns void as\n\$body\$\ndeclare\nbegin\n\t\nend\n\$body\$ language plpgsql;");
+}
+
+function createIndex($name) {
+	createItem(Type::Index, $name, "create index on $name();");
+}
+
+function createSQL($name, $content = '') {
+	createItem(Type::SQL, $name, $content);
+}
+
+function createTrackable($name) {
+	createSQL($name, "select trackable.init('$name');");
+}
+
+function migrate($name, &$connections = []) {
+	global $fake, $mainConfiguration, $PROJECT_PATH;
+
+	if (!$name) {
+		if (isset($mainConfiguration['release']) && is_array($mainConfiguration['release'])) {
+			foreach ($mainConfiguration['release'] as $schema) {
+				migrate($schema, $connections);
+			}
+		} else {
+			$basePath = $PROJECT_PATH . '/migrations';
+
+			$path = $basePath;
+
+			if ($dir = opendir($path)) {
+				while ($name = readdir($dir)) {
+					$namePath = "$path/$name";
+
+					if (in_array($name, ['.', '..']) || !is_dir($namePath)) {
+						continue;
+					}
+
+					migrate($name, $connections);
+				}
+
+				closedir($dir);
+			}
+		}
+
+		return;
+	}
+
+	if (strpos($name, ',') !== false) {
+		$names = explode(',', $name);
+
+		foreach ($names as $name) {
+			migrate($name, $connections);
+		}
+
+		return;
+	}
+
+	$migrations = readMigrations($name);
+
+	foreach ($migrations as $items) {
+		foreach ($items as $migration) {
+			$configuration = $migration['configuration'];
+
+			$servers = getClusterServers($configuration, $migration);
+
+			foreach ($servers as $server => $connectionString) {
+				$connection = getServerConnection($servers, $server, $connections);
+
+				initMigrationSchema($connection);
+
+				if (!migrationConfirmed($connection, $migration['name'], $migration['file'], $migration['type'])) {
+					echo "$server: " . typeName($migration['type']) . " {$migration['name']}, {$migration['file']}";
+
+					if (!$fake) {
+						pg_query($connection, "begin");
+
+						$sql = file_get_contents($migration['filePath']);
+
+						$schema = createObjectSchema($connection, $migration['name']);
+						pg_query($connection, "grant usage on schema $schema to " . implode(',', $configuration['users']));
+
+						if (pg_query($connection, $sql)) {
+							pg_query($connection, "commit");
+
+							$grant = isset($configuration['grant']) ? $configuration['grant'] : [];
+							list ($itemSchema, $itemName) = explode('.', $migration['name']);
+
+							switch ($migration['type']) {
+								case Type::Table:
+									foreach ($grant as $privilege => $users) {
+										pg_query($connection, "grant $privilege on table {$migration['name']} to $users");
+										$res = pg_query_params($connection, "select * from migrations.granttablesequencesto($1, $2, $3)", [$itemSchema, $itemName, $users]);
+										pg_free_result($res);
+									}
+									break;
+								case Type::Func:
+									foreach ($grant as $privilege => $users) {
+										$args = getFunctionArguments($migration['path']);
+
+										if (!pg_query($connection, "grant $privilege on function {$migration['name']}({$args}) to $users")) {
+											echo "FAILED: grant $privilege on function {$migration['name']}({$args}) to $users\n";
+										}
+									}
+									break;
+							}
+
+							confirmMigration($connection, $migration['name'], $migration['file'], $migration['type'], $sql);
+
+							echo " commited.\n";
+						} else {
+							pg_query($connection, "abort");
+							error(pg_last_error($connection) . "\n{$migration['name']} aborted.");
+						}
+					} else {
+						echo "\n";
+					}
+				}
+			}
+		}
+	}
+
+	echo "migration `$name` complete\n";
+}
+
+// Database
+
+function namespaceExists($connection, $name) {
+	if ($res = pg_query_params($connection, 'select * from pg_namespace where nspname = $1', [$name])) {
+		return pg_num_rows($res) > 0;
+	}
+
+	return false;
+}
+
+function initMigrationSchema($connection) {
+	if (!namespaceExists($connection, 'migrations')) {
+		pg_query($connection, 'create schema migrations');
+		pg_query($connection, 'create table migrations.migrations(id serial primary key, name varchar, file varchar, type varchar, content text, datetime timestamp with time zone default current_timestamp)');
+		pg_query($connection, 'create unique index on migrations.migrations(name, file, type)');
+
+		$query = <<<SQL
+create function migrations.granttablesequencesto(_schemaname varchar, _tablename varchar, _user varchar, out sequencename varchar)
+	returns setof varchar as
+$$
+begin
+	for sequencename in
+		select
+				substring(pg_attrdef.adsrc from '^nextval\(''(.*)''.*$')::varchar
+			from pg_class
+			inner join pg_namespace on pg_namespace.oid = pg_class.relnamespace
+			inner join pg_attribute on pg_attribute.attrelid = pg_class.oid
+			left join pg_attrdef on pg_attrdef.adrelid = pg_class.oid and pg_attrdef.adnum = pg_attribute.attnum
+				where
+					pg_namespace.nspname = _schemaname and
+					pg_class.relkind = 'r' and
+					pg_class.relname = _tablename and
+					pg_attribute.attnum > 0 and
+					pg_attrdef.adsrc like 'nextval%'
+	loop
+		execute 'grant all on sequence ' || sequencename || ' to ' || _user;
+		return next;
+	end loop;
+end
+$$ language plpgsql;
+SQL;
+
+		pg_query($connection, $query);
+	}
+}
+
+function migrationConfirmed($connection, $name, $file, $type) {
+	$res = pg_query_params($connection, 'select id from migrations.migrations where name = $1 and file = $2 and type = $3', [$name, $file, typeName($type)]);
+
+	return pg_num_rows($res) > 0;
+}
+
+function confirmMigration($connection, $name, $file, $type, $content) {
+	pg_query_params($connection, 'insert into migrations.migrations(name, file, type, content) values($1, $2, $3, $4)', [$name, $file, typeName($type), $content]);
+}
+
+function createObjectSchema($connection, $name) {
+	list ($schema, $exists) = getObjectSchema($connection, $name);
+
+	if (!$exists) {
+		pg_query($connection, "create schema $schema");
+	}
+
+	return $schema;
+}
+
+function getObjectSchema($connection, $name) {
+	$items = explode('.', $name);
+	$exists = true;
+	$schema = 'public';
+
+	if (count($items) > 1) {
+		$schema = $items[0];
+
+		$res = pg_query_params($connection, 'select * from pg_namespace where nspname = $1', [$schema]);
+
+		if (pg_num_rows($res) == 0) {
+			$exists = false;
+		}
+	}
+
+	return [$schema, $exists];
+}
+
+// Utilities
+
+function error($message) {
+	echo "error: $message\n";
+	exit;
+}
+
+function checkOpt($opts, $short, $long, $required = false) {
+	if ($short && isset($opts[$short])) {
+		return $opts[$short] === false ? ($required ? false : true) : $opts[$short];
+	}
+
+	if ($long && isset($opts[$long])) {
+		return $opts[$long] === false ? ($required ? false : true) : $opts[$long];
+	}
+
+	return false;
+}
+
+function typeFolder($type) {
+	switch ($type) {
+		case Type::Table:
+			return 'tables';
+		case Type::Func:
+			return 'functions';
+		case Type::Index:
+			return "indexes";
+		case Type::SQL:
+			return "sql";
+	}
+
+	return '';
+}
+
+function typeName($type) {
+	switch ($type) {
+		case Type::Table:
+			return 'table';
+		case Type::Func:
+			return 'function';
+		case Type::Index:
+			return 'index';
+		case Type::SQL:
+			return 'sql';
+	}
+
+	return '';
+}
+
+function getFunctionArguments($path) {
+	$files = [];
+
+	if ($dir = opendir($path)) {
+		while ($name = readdir($dir)) {
+			$filePath = "$path/$name";
+
+			if (is_file($filePath)) {
+				$files[$name] = $filePath;
+			}
+		}
+
+		ksort($files);
+
+		closedir($dir);
+	}
+
+	if ($files) {
+		while ($filePath = array_pop($files)) {
+			$content = file_get_contents($filePath);
+
+			if (preg_match('/create.+\((.*)\)\s+returns/imsU', $content, $m)) {
+				$args = $m[1];
+
+				if ($args) {
+					$args = preg_replace('/\s+not\s+null/imsU', '', $args);
+					$args = preg_replace('/\s+default\s+[^,\s)]+/ims', '', $args);
+				}
+
+				return $args;
+			}
+		}
+	}
+
+	return null;
+}
+
+function readConfiguration($path) {
+	if (is_file($path)) {
+		return json_decode(file_get_contents($path), true);
+	}
+
+	return null;
+}
+
+function readMigrations($name) {
+	global $mainConfiguration;
+	global $PROJECT_PATH;
+	global $CONFIG_NAME;
+
+	$migrations = [];
+	$basePath = $PROJECT_PATH . "/migrations";
+
+	$targetPath = $basePath;
+
+//	$targetConfiguration = mergeConfigurations($mainConfiguration, readConfiguration("$targetPath/$CONFIG_NAME.json"));
+	$targetConfiguration = $mainConfiguration;
+	$path = $targetPath . "/$name";
+	$schemaConfiguration = mergeConfigurations($targetConfiguration, readConfiguration("$path/$CONFIG_NAME.json"));
+
+	foreach ([Type::Table, Type::Func, Type::Index, Type::SQL] as $type) {
+		$itemsPath = "$path/" . typeFolder($type);
+
+		$itemsConfiguration = mergeConfigurations($schemaConfiguration, readConfiguration($itemsPath . "/$CONFIG_NAME.json"));
+
+		if (is_dir($itemsPath) && $dir = opendir($itemsPath)) {
+			while ($item = readdir($dir)) {
+				$itemPath = "$itemsPath/$item";
+
+				if (in_array($item, ['.', '..']) || !is_dir($itemPath)) {
+					continue;
+				}
+
+				if ($itemDir = opendir($itemPath)) {
+					$configuration = mergeConfigurations($itemsConfiguration, readConfiguration("$itemPath/$CONFIG_NAME.json"));
+
+					while ($file = readdir($itemDir)) {
+						$filePath = "$itemPath/$file";
+
+						if (!preg_match('/.+\.sql$/i', $file) || !is_file($filePath)) {
+							continue;
+						}
+
+						if (!isset($migrations[$file])) {
+							$migrations[$file] = [];
+						}
+
+						$migrations[$file][] = ['name' => $item, 'file' => $file, 'type' => $type, 'path' => $itemPath, 'filePath' => $filePath, 'configuration' => $configuration];
+					}
+
+					closedir($itemDir);
+				}
+			}
+
+			closedir($dir);
+		}
+	}
+
+	ksort($migrations);
+
+	return $migrations;
+}
+
+function mergeConfigurations($configuration, $config) {
+	if (!$configuration) {
+		$configuration = [];
+	}
+
+	if (!$config) {
+		$config = [];
+	}
+
+	foreach ($config as $key => $value) {
+		if (isset($configuration[$key]) && is_array($configuration[$key]) && is_array($value)) {
+			$configuration[$key] = mergeConfigurations($configuration[$key], $value);
+		} else {
+			$configuration[$key] = $value;
+		}
+	}
+
+	return $configuration;
+}
+
+function getClusterServers($configuration, $migration) {
+	if (is_array($migration)) {
+		$type = typeName($migration['type']);
+
+		if (!isset($configuration['cluster'][$type]) || !$configuration['cluster'][$type]) {
+			error("cluster must be specified ({$migration['name']}).");
+		}
+
+		$name = $configuration['cluster'][$type];
+	} else {
+		$name = $migration;
+	}
+
+	if (!isset($configuration['clusters']) || !isset($configuration['clusters'][$name])) {
+		error("cluster $name is not defined.");
+	}
+
+	$cluster = $configuration['clusters'][$name];
+	$servers = [];
+
+	foreach ($cluster as $server) {
+		if (!isset($configuration['servers'][$server])) {
+			error("server $server is not defined.");
+		}
+
+		$servers[$server] = $configuration['servers'][$server];
+	}
+
+	return $servers;
+}
+
+function getServerConnection($servers, $server, &$connections) {
+	if (!isset($servers[$server])) {
+		error("server doesn't exist in current cluster.");
+	}
+
+	if (!isset($connections[$server])) {
+		if (!$connections[$server] = @pg_connect($servers[$server])) {
+			error("failed to connect to server $server.");
+		}
+	}
+
+	return $connections[$server];
+}
+
+// Main
+
+date_default_timezone_set("Europe/Moscow");
+
+echo "\nproject directory: " . $PROJECT_PATH . "\n\n";
+
+$shortOpts = 'h:t:f:i:s:';
+$longOpts = ['help', 'config:', 'migrate::', 'check::', 'table:', 'function:', 'index:', 'unique', 'sql:', 'trackable::'];
+
+$opts = getopt($shortOpts, $longOpts);
+
+$helpText = <<<HELP
+theapp utility
+Usage: theapp [options]
+Options:
+    -h, --help                   This message.
+
+    --config name                Specify configuration filename (default 'configuration').
+
+    --migrate [schema]           Apply migrations.
+    --check [schema]             Check new migrations.
+
+    -t, --table name             Create or alter table.
+    -f, --function name          Create or recreate function.
+    -i, --index name             Create index for specified table.
+    --unique                     Make index unique.
+    --sql name                   Create sql file in folder `name`.
+    --trackable name             Create sql file with trackable script in folder `name`.
+
+Examples:
+
+Create table security.users.
+theapp -t security.users
+
+Create function sessions.read.
+theapp -f sessions.read
+
+Check migrations to apply.
+theapp --check
+
+Apply migration on a schema security.
+theapp --migrate security
+
+Apply all migrations on all schemas.
+theapp --migrate
+
+HELP;
+
+if ($name = checkOpt($opts, null, 'config', true)) {
+	$CONFIG_NAME = $name;
+}
+
+if (!$CONFIG_NAME) {
+	echo "nothing to do\nconfig is missing\n";
+	exit;
+}
+
+$mainConfiguration = readConfiguration("/etc/glonass/migrations/$CONFIG_NAME.json");
+
+if (!$mainConfiguration) {
+	echo "no configuration found\n";
+	exit;
+}
+
+foreach ($mainConfiguration['servers'] as $connectionString) {
+	if (!$connection = pg_connect($connectionString)) {
+		echo "Connection failed.\n";
+		exit;
+	}
+
+	break;
+}
+
+if (checkOpt($opts, 'h', 'help')) {
+	echo $helpText;
+} else if ($name = checkOpt($opts, null, 'migrate')) {
+	migrate($name === true ? null : $name);
+} else if ($name = checkOpt($opts, null, 'check')) {
+	$connections = [];
+	$fake = true;
+	migrate($name === true ? null : $name, $connections);
+} else if ($name = checkOpt($opts, 'f', 'function', true)) {
+	createFunction($name);
+} else if ($name = checkOpt($opts, 't', 'table', true)) {
+	createTable($name, [ 'trackable' => checkOpt($opts, null, 'trackable') ]);
+} else if ($name = checkOpt($opts, 'i', 'index', true)) {
+	createIndex($name);
+} else if ($name = checkOpt($opts, null, 'sql', true)) {
+	createSQL($name);
+} else if ($name = checkOpt($opts, null, 'trackable', true)) {
+	createTrackable($name);
+} else {
+	echo "nothing to do\n";
+}

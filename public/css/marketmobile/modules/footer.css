@@ -1,0 +1,18 @@
+.footer {
+	z-index: 10;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: white;
+	border-top: 1px solid #ccc;
+}
+.footer .td.left {
+	padding-left: 13px;
+}
+.footer .td.right {
+	padding-right: 13px;
+	text-align: right;
+}
+.footer td {
+	vertical-align: middle;
+}

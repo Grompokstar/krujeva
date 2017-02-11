@@ -1,0 +1,2 @@
+<% var delimiter = Util.coalesce(column.delimiter, ", "); %>
+<%= item && item[column.name] ? item[column.name].join(delimiter) : "" %>

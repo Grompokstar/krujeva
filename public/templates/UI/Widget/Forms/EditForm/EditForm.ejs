@@ -1,0 +1,23 @@
+<div class="table w100">
+	<div>
+		<div>
+			<div class="table wh100 form__edit-form">
+				<% Util.each(widget.columns, function (column) { %>
+				<div>
+					<div><%= column.title %></div>
+					<div><%= widget.columnContent(column) %></div>
+				</div>
+				<% }) %>
+			</div>
+		</div>
+		<div class="form__edit-form_buttons cell__right w0">
+				<div>
+					<button class="button__save w100" on-click="onSaveClick">Сохранить</button>
+				</div>
+				<div>
+					<button class="button__save w100" on-click="onSaveCloseClick">Сохранить и закрыть</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

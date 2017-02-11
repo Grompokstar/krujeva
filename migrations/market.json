@@ -1,0 +1,7 @@
+{
+	"servers": [
+		"host=127.0.0.1 port=5432 dbname=hairmarket user=postgres password=postgres"
+	],
+
+	"release": [ "util", "trackable", "system", "security", "reports", "market" ]
+}

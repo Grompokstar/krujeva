@@ -1,0 +1,26 @@
+<div class="form">
+	<div class="table wh100 table-0-100">
+		<div>
+			<div>
+				<div class="relative">
+					<% if (widget.showTitle) { %>
+					<div class="split form__bar" name="form-header">
+						<div class="split__left" name="form-title">
+							<%= widget.getTitle() %>
+						</div>
+						<div class="split__right">
+							<span class="icon-close" on-click="onCloseClick"></span>
+						</div>
+					</div>
+					<% } %>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div>
+				<div name="form-body" class="wh100 relative">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,21 @@
+/*validate*/
+.error-summary-validate-attributes {
+    background-color: #FEF1EC;
+    color: #FF632D;
+    padding: 20px;
+    font-size: 14px;
+}
+
+label.error-validate-attribute {
+    color: #FF632D !important;
+}
+
+input.error-validate-attribute,
+select.error-validate-attribute,
+textarea.error-validate-attribute {
+    border-color: #FF632D !important;
+}
+
+input.error-validate-attribute ~ input[type=text] {
+    border-color: #FF632D !important;
+}

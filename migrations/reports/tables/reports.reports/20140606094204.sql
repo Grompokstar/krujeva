@@ -1,0 +1,1 @@
+alter table reports.reports add column format int not null;

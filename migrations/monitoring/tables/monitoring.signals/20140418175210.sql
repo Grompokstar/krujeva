@@ -1,0 +1,20 @@
+create table monitoring.signals (
+	id bigserial primary key,
+	trackerid int,
+	currentgeog geography,
+	currentspeed int,
+	currentodometer int,
+	currentcourse int,
+	currentsatsglonass int,
+	currentsatsgps int,
+	currentdatetime timestamptz,
+	currentcreateddatetime timestamptz,
+	lastgeog geography,
+	lastspeed int,
+	lastodometer int,
+	lastcourse int,
+	lastsatsglonass int,
+	lastsatsgps int,
+	lastdatetime timestamptz,
+	lastcreateddatetime timestamptz
+) without oids;

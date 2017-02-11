@@ -1,0 +1,55 @@
+<% var self = this %>
+
+<% this.attributes = Util.object(this.attributes) %>
+
+<% var name = Html.generateName() %>
+
+<% this.attributes["name"] = name %>
+
+<% var attr = Html.attributes(this.attributes) %>
+
+<% if (this.prepend) { %>
+<% Util.each(this.prepend, function (item) { %>
+<label>
+	<input
+		<%= attr %>
+		type="radio"
+		value="<%= item.value %>"
+		<%= Html.checked(self.checked === item.value) %>
+		>
+	<span>
+		<%= Html.encode(item.title) %>
+	</span>
+</label>
+<% }) %>
+<% } %>
+
+<% this.enum.each(function (value) { %>
+<label>
+	<input
+		<%= attr %>
+		type="radio"
+		value="<%= value %>"
+		<%= Html.checked(self.checked === value) %>
+		>
+	<span>
+		<%= Html.encode(self.enum.title(value)) %>
+	</span>
+</label>
+<% }) %>
+
+<% if (this.append) { %>
+<% Util.each(this.append, function (item) { %>
+<label>
+	<input
+		<%= attr %>
+		type="radio"
+		value="<%= item.value %>"
+		<%= Html.checked(self.checked === item.value) %>
+		>
+	<span>
+		<%= Html.encode(item.title) %>
+	</span>
+</label>
+<% }) %>
+<% } %>

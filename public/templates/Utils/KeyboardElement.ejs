@@ -1,0 +1,86 @@
+<div class="keyboard-element flex">
+    <div class="keyboard-element-cnt flex-auto flex flex-column relative" name="keyboard-cnt">
+        <div class="keyboard-style"></div>
+
+        <% var lines = [
+            [81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 219],
+            [65, 83, 68, 70, 71, 72, 74, 75, 76, 186, 222],
+            [90, 88, 67, 86, 66, 78, 77, 188, 190, {key: 32, title: 'пробел', class: 'key-space'}],
+        ];
+        var indexKey = 1;
+        %>
+
+        <% var numLines = [
+            [49, 50, 51, 52, 53, 54, 55, 56, 57, 48]
+        ]; %>
+
+        <% var type = widget.type; %>
+
+        <% for (var i in numLines) { %>
+        <div class="flex-auto flex keys-element-line-num" name="numeric" style="<%= type == 'text' ? 'display:none; opacity: 0': ''%>">
+
+            <% for (var j in numLines[i]) { var keycode = numLines[i][j] %>
+
+                <div class="flex-auto key-element-button"
+                     on-touchstart="onKeyTouchStart"
+                     on-touchend="onKeyTouchEnd"
+                     on-click="onKeyTouchEnd"
+                     data-key="<%=keycode%>"
+                     data-type="numeric"
+                        >
+                    <div class="key-title"><%= KeyBoard.keyCodes[keycode][indexKey] %></div>
+                </div>
+
+
+            <% } %>
+
+        </div>
+        <% } %>
+
+        <div class="flex-auto flex flex-column" name="text" style="<%= type == 'text' ? '': 'opacity: 0.1'%>">
+        <% for (var i in lines) { %>
+
+                <div class="flex-auto flex keys-element-line">
+
+                    <% for (var j in lines[i]) { var keycode = lines[i][j] %>
+
+                    <% if (typeof keycode == 'object') { %>
+
+
+                    <div class="flex-auto key-element-button <%=keycode.class ? keycode.class : ''%>"
+                         data-key="<%=keycode.key%>"
+                         data-type="text"
+                         on-touchstart="onKeyTouchStart"
+                         on-touchend="onKeyTouchEnd"
+                         on-click="onKeyTouchEnd"
+                            >
+
+                        <% if (keycode.title) { %>
+                        <div class="key-title"><%= keycode.title %></div>
+                        <% } %>
+                    </div>
+
+
+                    <% } else { %>
+
+                    <div class="flex-auto key-element-button"
+                         on-touchstart="onKeyTouchStart"
+                         on-touchend="onKeyTouchEnd"
+                         on-click="onKeyTouchEnd"
+                         data-key="<%=keycode%>"
+                         data-type="text"
+                            >
+                        <div class="key-title"><%= KeyBoard.keyCodes[keycode][indexKey] %></div>
+                    </div>
+                    <% } %>
+
+
+                    <% } %>
+
+                </div>
+        <% } %>
+        </div>
+
+    </div>
+
+</div>

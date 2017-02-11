@@ -1,0 +1,5 @@
+<tr index="<%= index %>">
+	<% Util.each (plugin.columns, function (column) { %>
+	<td><%= Html.encode(item[column]) %></td>
+	<% }) %>
+</tr>

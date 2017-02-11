@@ -1,0 +1,24 @@
+<% var self = this; %>
+
+<% var attr = Html.attributes(this.attributes); %>
+<% var checked = this.checked ? this.checked : []; %>
+<% var multiline = Util.coalesce(this.multiline, true); %>
+<% var values = this.enum.values(); %>
+
+<% for (var i = 0; i < values.length; i++) { %>
+<% var value = values[i]; %>
+<label>
+	<input
+		<%= attr %>
+		type="checkbox"
+		value="<%= value %>"
+		<%= Html.checked(~checked.indexOf(value)) %>
+		>
+	<span>
+		<%= Html.encode(self.enum.title(value)) %>
+	</span>
+	<% if (multiline && i < values.length - 1) { %>
+	<br>
+	<% } %>
+</label>
+<% } %>

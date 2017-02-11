@@ -1,0 +1,199 @@
+.login-form {
+    width: 300px;
+    margin: 30px auto;
+
+    border: 1px solid #e5e5e5;
+    padding: 25px;
+}
+
+.login-title {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.login-form input {
+    height: 44px;
+
+    width: 100%;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    padding: 0 15px;
+    outline: none;
+}
+
+.login-form input:focus {
+    border-color: rgba(0,0,0, .25);
+}
+
+.l-row-block {
+    margin-bottom: 15px;
+}
+
+.l-row-block label {
+    display: block;
+    margin-bottom: 5px;
+    color: #777;
+    text-transform: uppercase;
+}
+
+.login-btn {
+    display: block;
+    background: #5C6BC0;
+    color: #fff;
+    height: 44px;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 44px;
+    vertical-align: middle;
+    font-size: 16px;
+}
+
+.login-btn:hover {
+    background: #3F51B5;
+    cursor: pointer;
+}
+
+.admin-header {
+    padding-top: 10px;
+    font-size: 20px;
+}
+
+.admin-menu {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.admin-t-inner {
+    font-size: 25px;
+}
+
+.admin-left-block {
+    text-align: right;
+}
+
+.link-create-new a {
+    text-decoration: underline;
+    color: #008cc2;
+    font-size: 18px;
+}
+
+.link-create-new a:hover {
+     color: #ff8700;
+    cursor: pointer;
+}
+
+.form-edit-block {
+    padding: 60px 0;
+}
+
+.f-edit-admin-row {
+    margin-bottom: 20px;
+}
+
+.f-edit-admin-row label {
+    display: block;
+    margin-bottom: 5px;
+    color: #777;
+    text-transform: uppercase;
+}
+
+.f-edit-admin-row input,
+.f-edit-admin-row select
+{
+    height: 44px;
+
+    width: 600px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    padding: 0 15px;
+    outline: none;
+}
+
+.f-edit-admin-row textarea {
+    height: 644px;
+    width: 100%;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    padding: 35px 15px;
+    outline: none;
+}
+
+.btn-inline {
+    display: inline-block;
+    padding: 0 25px;
+}
+
+.relative {
+    position: relative;
+}
+
+.f-edit-admin-row input:focus,
+.suitup-editor:focus
+{
+    border-color: rgba(0, 0, 0, .25);
+}
+
+.suitup-editor {
+    outline: none;
+}
+
+.upload-btn {
+    overflow: hidden;
+}
+
+.file-loader-todo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+}
+
+.photo-product img {
+    max-height: 370px;
+    max-width: 520px;
+}
+
+.admin-list {
+    margin-top: 40px;
+}
+
+.admin-list .td {
+    padding: 15px 0;
+    font-size: 18px;
+}
+
+.admin-list  .link-create-new  a {
+    font-size: 15px;
+}
+
+.admin-right-td-min {
+    width: 80px;
+    text-align: right;
+}
+
+.date-min-td {
+    width: 200px;
+    color: #666;
+}
+
+.admin-menu .ul-menu li a {
+    font-size: 13px;
+    padding: 0 15px;
+}
+
+.price-block {
+    margin: 10px 0;
+    width: 600px;
+}
+
+.price-block .td {
+    width: 250px;
+    vertical-align: middle;
+}
+
+.price-edit-admin-row input {
+    width: 200px;
+}

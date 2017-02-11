@@ -1,0 +1,80 @@
+<% var columns = widget.gridColumns() %>
+<% var actions = widget.gridActions() %>
+<div class="gridview table wh100">
+
+	<% if (widget.showHeader) { %>
+	<div>
+		<div class="gridview__header">
+			<table class="gridview__table" name="gridview-header">
+				<colgroup>
+					<% Util.each(columns, function (column) { %>
+					<col width="<%= column.width ? column.width : "*" %>">
+					<% }) %>
+
+					<% Util.each(actions, function (action) { %>
+					<col width="<%= action.width ? action.width : "*" %>">
+					<% }) %>
+				</colgroup>
+				<tbody>
+				<tr>
+					<% Util.each(columns, function (column) { %>
+					<td>
+						<%= column.title %>
+					</td>
+					<% }) %>
+					<% Util.each(actions, function (action) { %>
+					<td>
+					</td>
+					<% }) %>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<% } %>
+
+	<div>
+		<div class="gridview__body">
+			<div>
+				<div>
+					<table class="gridview__table" name="gridview-body">
+						<colgroup>
+							<% Util.each(columns, function (column) { %>
+							<col width="<%= column.width ? column.width : "*" %>">
+							<% }) %>
+
+							<% Util.each(actions, function (action) { %>
+							<col width="<%= action.width ? action.width : "*" %>">
+							<% }) %>
+						</colgroup>
+						<tbody name="list-items">
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<% if (widget.showFooter) { %>
+	<div>
+		<div class="gridview__footer split cell__middle" name="gridview-footer">
+			<div class="split__left">
+				<div class="gridview__footer_icon icon-file4" title="Создать" on-click="onItemCreateClick"></div>
+			</div>
+			<div class="split__right">
+				<div class="count">
+					Записей: <span name="gridview-count"><%= widget.gridCount %></span>
+				</div>
+				<div>
+					<select title="Выбрать страницу" name="gridview-pages" on-change="onPageChange">
+					</select>
+				</div>
+				<div class="gridview__footer_icon icon-arrow-right" title="Следующая страница" on-click="onNextPageClick"></div>
+				<div class="gridview__footer_icon icon-arrow-left" title="Предыдущая страница" on-click="onPrevPageClick"></div>
+				<div class="gridview__footer_icon icon-loop2" title="Обновить страницу" on-click="onRefreshPageClick"></div>
+			</div>
+		</div>
+	</div>
+	<% } %>
+
+</div>

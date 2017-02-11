@@ -1,0 +1,29 @@
+<svg width="46px" height="48px" viewBox="0 0 46 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Group" sketch:type="MSLayerGroup" fill="#8C827B">
+            <path d="M40,47.7 L6,47.7 L6,0.3 L40,10.9 L40,47.7 L40,47.7 Z M8,45.7 L38,45.7 L38,12.4 L8,3 L8,45.7 L8,45.7 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+            <rect id="Rectangle-path" sketch:type="MSShapeGroup" x="22" y="40.7" width="2" height="6"></rect>
+            <g transform="translate(12.000000, 15.000000)" id="Rectangle-path" sketch:type="MSShapeGroup">
+                <rect x="0.9" y="0.8" width="4" height="2"></rect>
+                <rect x="9" y="0.8" width="4" height="2"></rect>
+                <rect x="17.1" y="0.8" width="4" height="2"></rect>
+            </g>
+            <g transform="translate(12.000000, 21.000000)" id="Rectangle-path" sketch:type="MSShapeGroup">
+                <rect x="0.9" y="0.8" width="4" height="2"></rect>
+                <rect x="9" y="0.8" width="4" height="2"></rect>
+                <rect x="17.1" y="0.8" width="4" height="2"></rect>
+            </g>
+            <g transform="translate(12.000000, 27.000000)" id="Rectangle-path" sketch:type="MSShapeGroup">
+                <rect x="0.9" y="0.9" width="4" height="2"></rect>
+                <rect x="9" y="0.9" width="4" height="2"></rect>
+                <rect x="17.1" y="0.9" width="4" height="2"></rect>
+            </g>
+            <g transform="translate(12.000000, 34.000000)" id="Rectangle-path" sketch:type="MSShapeGroup">
+                <rect x="0.9" y="0" width="4" height="2"></rect>
+                <rect x="9" y="0" width="4" height="2"></rect>
+                <rect x="17.1" y="0" width="4" height="2"></rect>
+            </g>
+            <rect id="Rectangle-path" sketch:type="MSShapeGroup" x="0.5" y="45.7" width="45" height="2"></rect>
+        </g>
+    </g>
+</svg>

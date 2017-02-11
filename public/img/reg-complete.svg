@@ -1,0 +1,8 @@
+<svg width="54px" height="88px" viewBox="0 0 54 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Group" sketch:type="MSLayerGroup" fill="#ffffff">
+            <path d="M53.4,26.399 C53.4,11.819 41.58,0 26.999,0 C12.418,0 0.6,11.819 0.6,26.399 C0.6,36.915 6.748,45.992 15.646,50.238 L5.88,76.578 L14.927,72.425 L19.08,81.475 L27.535,58.668 L36.686,88 L41.311,79.183 L50.127,83.807 L39.479,49.668 C47.766,45.216 53.4,36.466 53.4,26.399 L53.4,26.399 Z M26.999,47.52 C15.335,47.52 5.88,38.064 5.88,26.4 C5.88,14.736 15.335,5.28 26.999,5.28 C38.664,5.28 48.119,14.735 48.119,26.4 C48.119,38.065 38.664,47.52 26.999,47.52 L26.999,47.52 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+            <path d="M30.322,21.657 L26.999,11.429 L23.677,21.657 L12.922,21.657 L21.622,27.977 L18.299,38.205 L26.999,31.883 L35.699,38.205 L32.377,27.977 L41.078,21.657 L30.322,21.657 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

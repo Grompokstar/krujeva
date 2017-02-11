@@ -1,0 +1,12 @@
+{
+	"connection": "postgres://glonass:glonass@glonass.shire.local:5433/transport",
+
+	"listenport": 5556,
+	"senderport": 5555,
+
+	"redis" : {
+		"host" : "127.0.0.1",
+		"port": "6379",
+		"channel": "TRANSPORT.EVENTS"
+	}
+}

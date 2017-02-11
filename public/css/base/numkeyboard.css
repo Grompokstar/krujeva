@@ -1,0 +1,35 @@
+.num-keyboard {
+    margin: auto;
+
+    /*position: absolute;
+    top: 1.85rem;
+
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);*/
+}
+
+.num-symbol {
+    margin-bottom: 0.625rem;
+    margin-right: 0.625rem;
+
+    background: #fff;
+    color: #323B49;
+    font-size: 2.5rem;
+    font-weight: 300;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.num-symbol.active {
+    background: #E6E6E3;
+}
+
+.num-symbol:nth-child(3) {
+    margin-right: 0;
+}
+
+.num-symbol.zero-symbol {
+    width: 100%;
+    margin-bottom: 0;
+}

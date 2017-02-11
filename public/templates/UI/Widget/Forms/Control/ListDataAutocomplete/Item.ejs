@@ -1,0 +1,6 @@
+<div>
+	<% for (var i = 0; i < widget.columns.length; i++) { %>
+	<div><%= item[widget.columns[i]] %></div>
+	<% } %>
+	<div style="width: 30px; text-align: center"><div name="remove-button" class="icon-remove" data-item="<%= Html.encode(JSON.stringify(item)) %>"></div></div>
+</div>

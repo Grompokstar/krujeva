@@ -1,0 +1,16 @@
+<svg width="21px" height="20px" viewBox="0 0 41 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="PROFSTYLE" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Bucket-1" transform="translate(-155.000000, -924.000000)">
+            <g id="Group" transform="translate(0.000000, 110.000000)">
+                <g id="Group-2" transform="translate(0.000000, 768.000000)">
+                    <g id="Oval-1-+-₽" transform="translate(155.500000, 46.000000)">
+                        <path d="M20,40 C31.045695,40 40,31.045695 40,20 C40,8.954305 31.045695,0 20,0 C8.954305,0 0,8.954305 0,20 C0,31.045695 8.954305,40 20,40 Z" id="Oval-1" fill="#FFCD00"></path>
+                        <text id="₽" font-family=".HelveticaNeueDeskInterface-Regular, .Helvetica Neue DeskInterface" font-size="26" font-weight="normal" fill="#FAFAFA">
+                            <tspan x="14" y="29">₽</tspan>
+                        </text>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

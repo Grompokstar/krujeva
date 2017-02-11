@@ -1,0 +1,163 @@
+.swiper-container, .swp-bg {
+    position: absolute !important;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+
+.swp-content {
+    position: absolute;
+    z-index: 2;
+    bottom: 10px;
+    left: 40px;
+    right: 20px;
+}
+
+.swiper-pagination-bullet {
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    opacity: 1;
+    margin: 3px 5px !important;
+}
+
+.swiper-pagination-bullet-active {
+    width: 8px;
+    height: 8px;
+    margin: 0 5px !important;
+}
+
+
+
+
+.swiper-1 {
+    background: url('/public/img/hello1.jpg') no-repeat;
+    background-size: cover;
+    background-position: 34% 50%;
+}
+
+.swiper-1-bg {
+    background: rgba(241, 102, 102, 0.2);
+    background: -webkit-linear-gradient(-120deg, rgba(241, 102, 102, 0.1) 0%, rgba(236, 92, 84, .95) 68%, rgba(227, 71, 201, 1) 100%);
+    background: linear-gradient(210deg, rgba(241, 102, 102, 0.1) 0%, rgba(236, 92, 84, .95) 68%, rgba(227, 71, 201, 1) 100%);
+}
+
+
+
+
+.swiper-2 {
+    background: url('/public/img/hello23.jpg?5') no-repeat;
+    background-size: cover;
+    background-position: 27% 50%;
+}
+
+.swiper-2-bg {
+    background: rgba(115, 109, 247, 0.2);
+    background: -webkit-linear-gradient(-120deg, rgba(115, 109, 247, 0.1) 0%, rgba(115, 109, 247, .95) 60%, rgba(43, 184, 220, 1) 100%);
+    background: linear-gradient(210deg, rgba(115, 109, 247, 0.1) 0%, rgba(115, 109, 247, .95) 60%, rgba(43, 184, 220, 1) 100%);
+}
+
+
+
+
+
+.swiper-3 {
+    background: url('/public/img/hello3.jpg?3') no-repeat;
+    background-size: cover;
+    background-position: 30% 50%;
+}
+
+.swiper-3-bg {
+    background: rgba(18, 167, 190, 0.2);
+    background: -webkit-linear-gradient(-120deg, rgba(18, 167, 190, 0.1) 0%, rgba(18, 167, 190, .95) 68%, rgba(20, 209, 136, 1) 100%);
+    background: linear-gradient(210deg, rgba(18, 167, 190, 0.1) 0%, rgba(18, 167, 190, .95) 68%, rgba(20, 209, 136, 1) 100%);
+}
+
+
+.swp-logo-cnt {
+    margin-left: -23px;
+    width: 55%;
+    height: 130px;
+    min-width: 160px;
+}
+
+.swp-title {
+    font-size: 18px;
+    color: #fff;
+    font-weight: 100;
+    letter-spacing: 1px;
+    line-height: 1.35;
+    height: 80px;
+}
+
+.swp-description {
+    color: #fff;
+    font-weight: 100;
+    line-height: 1.35;
+    font-size: 16px;
+    height: 150px;
+
+    white-space: normal;
+}
+
+.swp-logo-cnt-main {
+    width: 160px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+.swp-registration-block {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: rgba(255,255,255, .2);
+    z-index: 20;
+}
+
+.swp-registration-block .link-button {
+    color: #fff;
+    line-height: 50px;
+    vertical-align: middle;
+    text-align: center;
+    text-shadow: 0 0 2px #000;
+}
+
+.swiper-4 {
+    background: url('/public/img/hello6.jpg') no-repeat;
+    background-size: cover;
+    background-position: 30% 50%;
+}
+
+.content-login .button-white {
+    margin-bottom: 100px;
+    border: 0;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.16);
+    color: #967459;
+    border-radius: 100px;
+    font-size: 14px;
+    max-width: 70%;
+}
+
+.swiper-pagination-btn {
+    position: absolute;
+    right: 0;
+    color: #fff;
+    z-index: 11;
+
+    bottom: 0 !important;
+
+    padding: 20px;
+}
+
+.swiper-pagination-btn,
+.swiper-container-horizontal>.swiper-pagination-bullets,
+.swiper-pagination-custom,
+.swiper-pagination-fraction
+{
+    bottom: 20px;
+}

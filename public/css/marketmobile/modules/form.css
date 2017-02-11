@@ -1,0 +1,68 @@
+input {
+	border: none;
+	outline: none;
+	border-radius: 0;
+	border-bottom: 2px solid;
+	border-color: var(--lineColorNormal);
+
+	color: var(--textColorNormal);
+
+	height: 40px;
+	width: 100%;
+
+	margin-bottom:var(--paddingCard);
+}
+input:disabled {
+	color: var(--textColorDisabled);
+}
+input:focus {
+	border-color: var(--lineColorActive);
+}
+
+label {
+	font-size:var(--labelFontSize);
+	text-transform: uppercase;
+	letter-spacing: 1px;
+
+	color: var(--textColorNormal);
+	width: 100%;
+}
+button {
+	width: 100%;
+	padding: 12px 20px 12px 20px;
+
+	background: white;
+	border: 2px solid var(--textColorNormal);
+	color: var(--textColorNormal);
+
+	text-transform: uppercase;
+	text-align: center;
+
+	margin: 0 auto;
+
+    border-radius: 100px;
+}
+
+.button-white {
+	max-width: 60%;
+	padding: 12px 20px 12px 20px;
+
+	background: white;
+    border-bottom: 2px solid #EA6D32;
+	/*border: 2px solid #ffffff;*/
+	color: #EA6D32;
+
+	text-transform: uppercase;
+	text-align: center;
+
+	margin: 0 auto;
+	margin-bottom: 80px;
+}
+
+.error input {
+    border-color: var(--lineColorError);
+}
+
+.check input {
+	border-color: var(--lineColorCheck);
+}

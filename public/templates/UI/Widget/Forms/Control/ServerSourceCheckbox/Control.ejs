@@ -1,0 +1,25 @@
+<% var self = this; %>
+
+<% var attr = Html.attributes(this.attributes); %>
+<% var checked = this.checked ? this.checked : []; %>
+<% var multiline = Util.coalesce(this.multiline, true); %>
+
+<% for (var i = 0; i < items.length; i++) { %>
+<% var item = items[i]; %>
+<% var value = item[valueColumn]; %>
+<% var text = item[textColumn]; %>
+<label>
+	<input
+		<%= attr %>
+		type="checkbox"
+		value="<%= Html.encode(value) %>"
+		<%= Html.checked(~checked.indexOf(value)) %>
+		>
+	<span>
+		<%= Html.encode(text) %>
+	</span>
+	<% if (multiline && i < items.length - 1) { %>
+	<br>
+	<% } %>
+</label>
+<% } %>

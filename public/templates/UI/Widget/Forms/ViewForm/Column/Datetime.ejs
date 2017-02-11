@@ -1,0 +1,34 @@
+<%
+
+var date;
+var value = item[column.name];
+
+switch (column.input) {
+	case "TZ":
+		date = Date.fromTZ(value);
+		break;
+	case "PG":
+		date = Date.fromPG(value);
+		break;
+	case "PGDate":
+		date = Date.fromPGDate(value);
+		break;
+	case "Time":
+		date = Date.fromTime(value);
+		break;
+	default:
+		date = column.input ? Date.fromFormat(column.input) : Date.parse(column.input);
+		break;
+}
+
+var datetime = "";
+
+if (column.output) {
+	datetime = date.format(column.output);
+} else {
+	datetime = date.format();
+}
+
+%>
+
+<%= datetime %>

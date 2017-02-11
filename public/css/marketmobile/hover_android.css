@@ -1,0 +1,49 @@
+
+.menuContainer .tr:hover {
+    background: rgba(255, 255, 255, .2);
+}
+
+.dealer-brand-item:hover {
+    background: rgba(0, 0, 0, 0.07);
+}
+
+button:hover {
+    background: var(--cardHrColor);
+}
+
+.svrarrow:hover,
+.svgmenu:hover,
+.svgbasket:hover {
+    opacity: 0.5;
+}
+
+.input-view:hover {
+    background: color(var(--lineColorNormal) opacity(.5));
+}
+
+.region-item:hover {
+    background: color(var(--lineColorNormal) opacity(.5));
+}
+
+.region-item:hover:before,
+.region-item:hover + .region-item:before {
+    display: none;
+}
+
+.menuContent .tr:hover {
+    background: rgba(255, 255, 255, .2);
+}
+
+.product-item.no-active:hover {
+    background: none !important;
+}
+
+.buy-btn-product:hover {
+    background: var(--mainColor);
+}
+
+.count-product-minus:hover,
+.count-product-plus:hover {
+    background: var(--mainColor);
+    color: #fff;
+}

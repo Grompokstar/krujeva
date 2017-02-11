@@ -1,0 +1,1 @@
+alter table market.userprofiles add column bonus int default 115;

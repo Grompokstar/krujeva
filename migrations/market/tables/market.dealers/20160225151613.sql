@@ -1,0 +1,9 @@
+alter table market.dealers add column director varchar;
+alter table market.dealers add column inn varchar;
+alter table market.dealers add column kpp varchar;
+alter table market.dealers add column checkaccount varchar;
+alter table market.dealers add column bankname varchar;
+alter table market.dealers add column koraccount varchar;
+alter table market.dealers add column bik varchar;
+alter table market.dealers add column okpo varchar;
+alter table market.dealers add column factaddress varchar;

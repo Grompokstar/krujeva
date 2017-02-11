@@ -1,0 +1,28 @@
+@import 'variables.css';
+@import 'alert.css';
+@import 'modules/table.css';
+@import 'modules/layout.css';
+@import 'modules/mobile-layout.css';
+@import 'modules/contacts.css';
+@import 'modules/menu.css';
+@import 'modules/events.css';
+@import 'modules/news.css';
+@import 'modules/admin.css';
+
+/*
+.main-container {
+    position: relative;
+    z-index: 5;
+}
+.dev-wp-fkf {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+
+    height: 6000px;
+
+    background: url('/public/img/design/mobile/main.png') top center  no-repeat;
+
+    opacity: 0.4;
+}*/

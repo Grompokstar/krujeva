@@ -1,0 +1,122 @@
+.price-regions {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 350px;
+
+    border-right: 1px solid #DEE2E9;
+    background: #F4F7F9;
+
+    overflow-y: auto;
+}
+
+.price-upload-block {
+    position: absolute;
+    left: 351px;
+    top: 0;
+    bottom: 0;
+    right: 0;
+
+    overflow-y: auto;
+}
+
+.region-item {
+    padding: 0 0 0 60px;
+    border-bottom: 1px solid #DEE2E9;
+    cursor: pointer;
+}
+
+.region-item:hover {
+    background: rgba(255,255,255, .8);
+}
+
+.region-item .brand-name {
+    padding-top: 30px;
+    color: #262A2D;
+    font-size: 20px;
+}
+
+.region-item .area-name {
+    color: rgba(38, 42, 45, .5);
+    font-size: 18px;
+    margin-top: 9px;
+    padding-bottom: 25px;
+}
+
+.region-item.active {
+    background: #fff;
+}
+
+.list-title {
+    height: 80px;
+    border-bottom: 1px solid #DEE2E9;
+
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    line-height: 80px;
+    vertical-align: middle;
+    padding-left: 60px;
+    color: #5B7085;
+    font-size: 18px;
+    font-weight: 100;
+}
+
+.region-item-title {
+    height: 79px;
+    border-bottom: 1px solid #DEE2E9;
+    line-height: 79px;
+    padding-left: 60px;
+    font-size: 20px;
+    color: #556776;
+}
+
+.price-btns {
+    padding: 40px 30px 0 60px;
+}
+
+.btn-download-price {
+    background: #F6F8FB;
+    border: 1px solid #EBEFF7;
+    padding: 32px 35px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.btn-download-price:hover {
+    background: #ECF0F7;
+}
+
+.limited-price-block {
+    width: 400px;
+    float: left;
+    margin-right: 40px;
+    margin-bottom: 40px;
+}
+
+.price-item-desc {
+    font-size: 20px;
+    color: #556776;
+    padding-left: 34px;
+    font-weight: 100;
+}
+
+.price-instruction {
+    color: rgba(38, 42, 45, .5);
+    font-size: 18px;
+    margin-top: 30px;
+    padding-right: 10px;
+}
+
+.file-loader-todo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    height: 100%;
+    display: block;
+}
+

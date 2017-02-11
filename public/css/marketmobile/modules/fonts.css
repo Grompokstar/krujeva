@@ -1,0 +1,12 @@
+h1 {
+	font-size: var(--titleFontSize);
+}
+h2 {
+
+}
+span.bold {
+	font-weight: 600;
+}
+span.light {
+	font-weight: 200;
+}

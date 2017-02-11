@@ -1,0 +1,20 @@
+#!/bin/sh
+
+#pg_restore -U postgres -h 127.0.0.1 -C -d hairmarket -v dump.tar
+
+now="$(date +'%d_%m_%Y')"
+
+file="hairmarket_${now}.tar"
+
+gzfile="${file}.gz"
+
+printf "Current date in dd/mm/yyyy format %s\n" "$now"
+
+PGPASSWORD="postgres" pg_dump -h 188.120.226.185 -p 5432 -U postgres -F t -c -v -f ${file} hairmarket
+
+gzip ${file}
+
+#send file
+sshpass -p 'wa344474' scp ${gzfile} root@62.109.4.208:/root/dump/
+
+rm -rf ${gzfile}

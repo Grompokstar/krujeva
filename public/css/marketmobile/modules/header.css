@@ -1,0 +1,103 @@
+.header {
+	z-index: 10;
+	top:0;
+	left: 0;
+	right: 0;
+}
+
+.header.no-bg {
+    background: none !important;
+}
+
+.header.white-bg {
+    background: rgba(255,255,255, .95) !important;
+}
+
+.header .td.left {
+	/*padding-left: var(--paddingApp);*/
+	min-width: 60px;
+}
+.header .td.right {
+	/*padding-right: var(--paddingApp);*/
+	min-width: 60px;
+}
+.header .center {
+	position: relative;
+}
+.header .center .title {
+	text-align: center;
+	line-height: 50px;
+
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+
+	font-size: var(--titleFontSize);
+}
+
+.header .title.white {
+    color: #fff;
+}
+
+.svgarrow {
+	background: url("/public/img/arrow.svg?1") 0 0 no-repeat;
+	background-position: 10px center;
+	background-size: 30%;
+
+	width: 60px;
+	height: 50px;
+}
+
+.svgarrow.black {
+    background: url("/public/img/arrow-black.svg?1") 0 0 no-repeat;
+    background-position: 13px center;
+    background-size: 30%;
+}
+
+.svgmenu {
+	background: url("/public/img/menu.svg?1") 0 0 no-repeat;
+	background-position: 13px center;
+
+	width: 60px;
+	height: 50px;
+}
+.svgbasket {
+	background: url("/public/img/basket.svg?1") 0 0 no-repeat;
+	background-position: 28px center;
+
+	width: 60px;
+	height: 50px;
+    position: relative;
+}
+
+.svgbasket.black {
+    background: url("/public/img/basket-black.svg?1") 0 0 no-repeat;
+    background-position: 28px center;
+
+    width: 60px;
+    height: 50px;
+    position: relative;
+}
+
+.svgbasket .count-cart {
+    position: absolute;
+    right: 21px;
+    top: 11px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #000;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 600;
+
+    text-align: center;
+    line-height: 18px;
+    vertical-align: middle;
+}

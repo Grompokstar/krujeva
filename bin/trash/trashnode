@@ -1,0 +1,95 @@
+#!/bin/sh
+#
+# chkconfig: - 90 10
+# description: run trash nodejs service
+#
+
+scriptname="Trash Nodejs"
+logdir="/var/log/glonass/trash"
+scriptdir="/usr/local/www/mintrans/emergency/"
+
+
+logfile="${logdir}/trashnode.log"
+prefixscript="NODE_PATH=/usr/lib/node_modules"
+script="node ${scriptdir}/nodejs/message/application.js"
+scriptoptions="--wp=19001 --mp=19006 --mode=redis --channel=Trash.EVENTS --storage=redis --tag=__SecurityContext"
+user="nginx"
+
+# Check that networking is up
+[ "$NETWORKING" = "no" ] && exit 0
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+check () {
+	proc_cnt=`ps ax | grep -v grep | grep "$script"`
+
+	if [ "$proc_cnt" == "" ]; then
+		RETVAL="2"
+	else
+		RETVAL="0"
+	fi
+}
+
+start () {
+	check
+
+	if [ $RETVAL == 0 ]; then
+		echo "Already running. Aborting."
+	else
+		echo -n "Starting $scriptname"
+
+		runuser -l "$user" -c "$prefixscript $script $scriptoptions >> $logfile 2>&1 &" && echo_success || echo_failure
+
+		RETVAL=$?
+		echo
+		[ $RETVAL -eq 0 ]
+		return $RETVAL
+	fi
+}
+
+stop () {
+	check
+
+	if [ $RETVAL == 2 ]; then
+		echo "Already stopped. Aborting."
+	else
+		echo -n "Stopping $scriptname: "
+		pid=`ps ax | grep -v grep | grep "$script" | grep -o -P "^\s*\d+"`
+		kill -15 $pid > /dev/null 2>&1 && echo_success || echo_failure
+
+		RETVAL=$?
+		echo
+		[ $RETVAL -eq 0 ]
+		return $RETVAL
+	fi
+}
+
+status () {
+	check
+
+	if [ $RETVAL == 2 ]; then
+		echo "$scriptname stopped"
+    else
+    	echo "$scriptname is running"
+	fi
+}
+
+case $1 in
+    start)
+	start
+	;;
+    stop)
+	stop
+	;;
+    restart)
+	stop
+	start
+	;;
+    status)
+	status $script
+	;;
+    *)
+	echo "Usage: $0 {start|stop|restart|status}"
+	;;
+esac

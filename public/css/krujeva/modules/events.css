@@ -1,0 +1,112 @@
+.events-page {
+    margin-top: 100px;
+    background: var(--bgColor);
+}
+
+.inner-title {
+    margin-top: 80px;
+    text-align: center;
+}
+
+.pline-row .td-fix {
+    width: 350px;
+}
+
+.pline-row .td-center {
+    text-align: center;
+}
+
+.p-container {
+    width: 350px;
+    height: 400px;
+    background: #fff;
+    display: inline-block;
+    text-align: left;
+}
+
+.p-cnt-img-bg {
+    height: 250px;
+
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.p-cnt-img-bg a {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.p-cnt-txt-block {
+    padding: 30px 39px;
+}
+
+.p-data-grey {
+    font-size: 17px;
+    color: rgba(0,0,0, .5);
+}
+
+.p-data-title {
+    font-size: 19px;
+    margin-top: 10px;
+}
+
+.p-data-title a {
+    text-decoration: none;
+    color: #000;
+}
+
+.mobile-p-data-title a {
+    text-decoration: none;
+    color: #000;
+}
+
+.p-data-title a:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.past-event {
+    opacity: 0.5;
+}
+
+.mobile-events-cnt {
+    padding: 40px 15px;
+}
+
+.mobile-pline-row {
+    margin-top: 45px;
+}
+
+.mobile-p-cnt-img-bg {
+    height: 150px;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.mobile-p-cnt-img-bg a {
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+}
+
+
+.mobile-p-data-grey {
+    margin-top: 10px;
+    font-size: 16px;
+    color: rgba(0,0,0, .5);
+}
+
+.mobile-p-data-title {
+    font-size: 18px;
+    margin-top: 5px;
+}

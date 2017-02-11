@@ -1,0 +1,28 @@
+.ts-popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+
+    background-color: rgba(2255, 255, 255, .8);
+}
+
+.ts-popup > div {
+    height: 100%;
+}
+
+.ts-popup .container {
+    flex: 0 0 auto;
+    margin: auto;
+    min-width: 200px;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 1px 12px 20px rgba(0, 0, 0, .14);
+}
+
+.ts-popup .container .title {
+    font-size: 15px;
+    font-weight: normal;
+}

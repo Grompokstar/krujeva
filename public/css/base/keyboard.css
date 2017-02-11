@@ -1,0 +1,176 @@
+
+.custom-keyboard {
+    background: #D2D6DB;
+}
+
+.text-keyboard {
+    max-width: 1280px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.custom-keyboard .autocompete-keyboard {
+    height: 28px;
+}
+
+.keys-line {
+    margin: 0 auto 6px auto;
+}
+
+.key-button {
+    position: relative;
+    margin: 0 3px;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 1px 0 rgba(0,0,0, .25);
+}
+
+.key-button.active
+{
+    background: #b5b9c2;
+}
+
+.key-button .key-title {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    text-align: center;
+
+    transform: translateY(-50%);
+
+    margin-top: -0.18em;
+}
+
+
+
+
+/*Input*/
+.custom-input {
+    width: 100%;
+    border: 1px solid #e5e5e5;
+    padding: 11px 15px;
+    border-radius: 4px;
+
+    font-family: inherit;
+    font-size: 100%;
+    line-height: inherit;
+
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    position: relative;
+
+    cursor: text;
+}
+
+.custom-input.focused {
+    border-color: #008cc2;
+}
+
+.custom-input.error-validate-attribute {
+    border-color: #CD0A0A !important;
+}
+
+.custom-input .text-container {
+    white-space: nowrap;
+}
+
+.custom-input .text-container:before {
+    content: '\007C\00a0\00a0';
+    display: inline-block;
+    opacity: 0;
+    margin-left: -0.2em;
+    width: 1px;
+}
+
+.custom-input.focused .text-container:after {
+    position: absolute;
+    content: '';
+
+    top: 20%;
+    bottom: 20%;
+    width: 1px;
+    background: #000;
+
+    -webkit-animation: customCaret 1s .5s linear infinite;
+    animation: customCaret 1s .5s linear infinite;
+}
+
+@-webkit-keyframes customCaret {
+    0% {
+        display: block;
+        opacity: 1;
+    }
+    40% {
+        display: block;
+        opacity: 1;
+    }
+    50% {
+        display: none;
+        opacity: 0;
+    }
+    100% {
+        display: none;
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes customCaret {
+    0% {
+        display: block;
+        opacity: 1;
+    }
+    40% {
+        display: block;
+        opacity: 1;
+    }
+    50% {
+        display: none;
+        opacity: 0;
+    }
+    100% {
+        display: none;
+        opacity: 0;
+    }
+}
+
+@-o-keyframes customCaret {
+    0% {
+        display: block;
+        opacity: 1;
+    }
+    40% {
+        display: block;
+        opacity: 1;
+    }
+    50% {
+        display: none;
+        opacity: 0;
+    }
+    100% {
+        display: none;
+        opacity: 0;
+    }
+}
+
+@keyframes customCaret {
+    0% {
+        display: block;
+        opacity: 1;
+    }
+    40% {
+        display: block;
+        opacity: 1;
+    }
+    50% {
+        display: none;
+        opacity: 0;
+    }
+    100% {
+        display: none;
+        opacity: 0;
+    }
+}

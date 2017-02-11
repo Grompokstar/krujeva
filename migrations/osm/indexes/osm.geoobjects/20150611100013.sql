@@ -1,0 +1,1 @@
+CREATE INDEX ON osm.geoobjects USING GIST(geog);

@@ -1,0 +1,133 @@
+.init-page-splashscreen {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    background-image: -webkit-radial-gradient(40% 129%, #FFB00D 10%, #FE6044 100%);
+    background-image: radial-gradient(40% 129%, #FFB00D 10%, #FE6044 100%);
+}
+
+.kidcity-loader {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    background: rgba(0,0,0, .4);
+    z-index: 15;
+}
+
+.kidcity-loader .loader-panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 300px;
+    background: #fff;
+
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.kidcity-loader .wait-text {
+    color: #323B49;
+    font-size: 40px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.kidcity-loader .wait-hint {
+    color: #6D7581;
+    font-size: 30px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.kidcity-loader .loader {
+    position: relative;
+    margin: 0px auto;
+    margin-top: 10px;
+    width: 60px;
+    height: 60px;
+    zoom: 1.7;
+}
+
+.kidcity-loader .circular {
+    -webkit-animation: rotate-kidcity-loader 2s linear infinite;
+    animation: rotate-kidcity-loader 2s linear infinite;
+    height: 60px;
+    position: relative;
+    width: 60px;
+}
+
+.kidcity-loader .path {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    -webkit-animation: dash-kidcity-loader 1.5s ease-in-out infinite, color-kidcity-loader 6s ease-in-out infinite;
+    animation: dash-kidcity-loader 1.5s ease-in-out infinite, color-kidcity-loader 6s ease-in-out infinite;
+}
+
+@-webkit-keyframes rotate-kidcity-loader {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate-kidcity-loader {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes dash-kidcity-loader {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35;
+    }
+    100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124;
+    }
+}
+
+@keyframes dash-kidcity-loader {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35;
+    }
+    100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124;
+    }
+}
+
+@-webkit-keyframes color-kidcity-loader {
+    100%, 0% {
+        stroke: #FE6044;
+    }
+    80%, 90% {
+        stroke: #FFB00D;
+    }
+}
+
+@keyframes color-kidcity-loader {
+    100%, 0% {
+        stroke: #FE6044;
+    }
+    80%, 90% {
+        stroke: #FFB00D;
+    }
+}

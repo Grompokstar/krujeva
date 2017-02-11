@@ -1,0 +1,66 @@
+{
+	"class": "Krujeva\\Application",
+
+	"connection": {
+		"default": "host=127.0.0.1 port=5432 dbname=krujeva user=postgres password=postgres"
+	},
+
+	"initial": "Krujeva\\DefaultAction",
+
+	"viewsPath": "application/Views/Krujeva/",
+
+	"security": {
+		"context": "Krujeva\\Context",
+		"sessionKey": "sid",
+		"headerKey": "sid"
+	},
+
+	"static": {
+		"version": 2,
+		"debug": false,
+
+		"js": {
+			"savePath": "cache/"
+		},
+		"css": {
+			"savePath": "cache/"
+		}
+	},
+
+	"mobile": {
+		"version": 1,
+		"what_new": "Всем привет - пришла новая версия! \n Обновляйся",
+		"mode": "light"
+	},
+
+	"upload" : {
+		"path": "/public/files/"
+	},
+
+	"elastic": {
+		"url": "http://127.0.0.1:9200"
+	},
+
+	"message": {
+		"mode": "redis",
+		"channel": "MARKET.EVENTS",
+		"url": "http://62.109.4.208:11008/message",
+		"clientURL": "http://62.109.4.208/sockjs"
+	},
+
+	"redis": {
+		"host": "127.0.0.1",
+		"port": 6379
+	},
+
+	"cache": {
+		"class": "Data\\SessionRedis",
+        "host": "127.0.0.1",
+        "port": 6379
+	},
+
+	"reports": {
+		"path": "/var/local/reports/market/",
+		"excelPath": "/var/local/reports/market/excel/"
+	}
+}

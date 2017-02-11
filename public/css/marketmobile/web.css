@@ -1,0 +1,150 @@
+.header, .footer {
+	position: absolute;
+	height: 50px;
+	background: var(--tabColor);
+}
+
+.header {
+    background: var(--mainColor);
+    color: #fff;
+}
+.disabled-input:disabled {
+    color: #000 !important;
+    opacity: 1 !important;
+    -webkit-text-fill-color: #000 !important;
+}
+
+
+/*IOS STATUS BAR*/
+.ios-body .header {
+    top: 20px;
+}
+
+.ios-body .menuHeader {
+    margin-top: 20px;
+}
+
+.ios-body .absolute-list {
+    padding-top: 90px;
+}
+
+.ios-body .header:before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: var(--mainColor);
+}
+
+.ios-body .dealer-header:before,
+.ios-body .header-transparent:before,
+.ios-body .header.no-bg:before
+{
+    display: none;
+}
+
+.ios-body .product-header:before {
+    background: rgba(255,255,255, .7);
+}
+
+.ios-body .header.white-bg:before {
+    background: rgba(255,255,255, .95) !important;
+}
+
+
+.ios-body .product-search-form {
+    top: 70px;
+}
+
+.ios-body .search-block-list {
+    padding-top: 121px;
+}
+
+.ios-body .product-list {
+    padding-top: 0;
+}
+
+.ios-body .product-card-cnt {
+    padding-top: 80px;
+}
+/*IOS STATUS BAR*/
+
+
+.table {
+	display: table;
+	width: 100%;
+	border-collapse: collapse;
+  	border-spacing: 0px;
+}
+.tr {
+	display: table-row;
+}
+.td {
+	display: table-cell;
+	border-spacing: 0;
+}
+.td.w100 {
+	width: 100%;
+}
+.h100 {
+	height: 100%;
+}
+.table.middle .td {
+	vertical-align: middle;
+}
+.td.bottom {
+	vertical-align: bottom;
+}
+a {
+	font-size: 14px;
+	color: var(--linkColor);
+	text-decoration: none;
+}
+.center {
+	text-align: center;
+}
+
+.page-bg, .product-search-form {
+    background: #EDE9EA;
+    background: #F1F1F1;
+
+	/*background-repeat: no-repeat;
+
+	background: -webkit-linear-gradient(#F0EEF0, #EFE1CF);
+	background: -webkit-gradient(linear, left top, left bottom, from(#F0EEF0), to(#EFE1CF));
+	background: -moz-linear-gradient(#F0EEF0, #EFE1CF);
+	background: linear-gradient(#F0EEF0, #EFE1CF);
+	background-attachment: fixed;*/
+}
+
+.login-bg {
+	background-repeat: no-repeat;
+	background: -webkit-linear-gradient(#FFAA29, #FF7548);
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFAA29), to(#FF7548));
+	background: -moz-linear-gradient(#FFAA29, #FF7548);
+	background: linear-gradient(#FFAA29, #FF7548);
+	background-attachment: fixed;
+}
+.content-relative {
+	position: relative;
+	z-index: 3;
+}
+
+.relative {
+	position: relative;
+}
+
+.absoluteBottom {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.link-button {
+    font-size: 14px;
+    color: #379AFF;
+    text-decoration: none;
+}

@@ -1,0 +1,8 @@
+<select class="w100" data-column="<%= column.name %>" on-change="onEnumColumnChange">
+	<% if (column.showEmpty) { %>
+	<option value=""></option>
+	<% } %>
+	<% column.enum.each(function (value) { %>
+	<option value="<%= value %>" <%= value == widget.item[column.name] ? "selected" : ""%>><%= column.enum.title(value) %></option>
+	<% }) %>
+</select>

@@ -1,0 +1,8 @@
+<div class="table wh100 form__view-form">
+	<% Util.each(widget.columns, function (column) { %>
+	<div>
+		<div><%= column.title %></div>
+		<div><%= widget.columnContent(column) %></div>
+	</div>
+	<% }) %>
+</div>

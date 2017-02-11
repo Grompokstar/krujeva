@@ -1,0 +1,31 @@
+<% var self = this; %>
+
+<select <%= Html.attributes(this.attributes) %> >
+	<% if (this.showEmpty) { %>
+	<option value=""></option>
+	<% } %>
+
+	<% if (this.prepend) { %>
+		<% Util.each(this.prepend, function (item) { %>
+			<option
+				value="<%= item.value %>"
+			<%= Html.selected(self.selected === item.value) %>
+			>
+			<%= Html.encode(item.title)  %>
+			</option>
+		<% }); %>
+	<% } %>
+
+	<% if (this.enum) { %>
+	<% this.enum.each(function (value) { %>
+	<% if (!self.filter || ~self.filter.indexOf(value)) { %>
+	<option
+		value="<%= value %>"
+		<%= Html.selected(self.selected === value) %>
+		>
+		<%= self.enum.title(value) %>
+	</option>
+	<% } %>
+	<% }); %>
+	<% } %>
+</select>

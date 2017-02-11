@@ -1,0 +1,11 @@
+<svg width="12px" height="29px" viewBox="0 0 65 62" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Group" sketch:type="MSLayerGroup" fill="#2FC328">
+            <rect id="Rectangle-path" sketch:type="MSShapeGroup" x="35.173" y="30.492" width="29.709" height="28.015"></rect>
+            <rect id="Rectangle-path" sketch:type="MSShapeGroup" x="0.618" y="30.492" width="29.709" height="28.015"></rect>
+            <rect id="Rectangle-path" sketch:type="MSShapeGroup" x="35.173" y="63.352" width="29.709" height="28.014"></rect>
+            <rect id="Rectangle-path" sketch:type="MSShapeGroup" x="0.618" y="63.352" width="29.709" height="28.014"></rect>
+            <path d="M22.182,26.755 L47.7,26.755 C49.277,25.98 50.659,25.037 51.938,23.958 C56.574,20.046 57.064,13.026 53.034,8.276 C49.003,3.525 41.978,2.843 37.342,6.754 C35.307,8.47 33.573,10.492 32.225,13.259 C31.195,9.702 29.563,7.024 27.511,4.664 C23.26,-0.223 16.004,-0.868 11.303,3.222 C6.602,7.311 6.237,14.586 10.487,19.473 C13.248,22.648 16.645,25.179 22.182,26.755 L22.182,26.755 Z M40.405,11.935 C42.915,9.818 46.496,9.927 48.407,12.178 C50.316,14.429 49.831,17.971 47.321,20.088 C44.811,22.204 41.724,23.507 35.462,23.097 C36.13,16.913 37.896,14.052 40.405,11.935 L40.405,11.935 Z M15.544,8.099 C17.773,6.16 21.442,6.734 23.744,9.379 C26.045,12.025 27.493,15.288 27.412,21.741 C20.968,20.964 17.978,19.041 15.677,16.396 C13.376,13.751 13.317,10.036 15.544,8.099 L15.544,8.099 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

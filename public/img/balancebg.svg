@@ -1,0 +1,43 @@
+<svg width="350px" height="100%" viewBox="0 0 563 387" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <polyline id="path-1" points="15 8.92902556 6.61904762 8.92902556 6.61904762 -1.42108547e-13"></polyline>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="8.38095238" height="8.92902556" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <polyline id="path-3" points="1.15463195e-13 6.39237057 8.8 6.39237057 8.8 15.7678474"></polyline>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="8.8" height="9.37547684" fill="white">
+            <use xlink:href="#path-3"></use>
+        </mask>
+        <polyline id="path-5" points="15 8.92902556 6.61904762 8.92902556 6.61904762 -2.4158453e-13"></polyline>
+        <mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="8.38095238" height="8.92902556" fill="white">
+            <use xlink:href="#path-5"></use>
+        </mask>
+        <polyline id="path-7" points="1.77635684e-15 6.39237057 8.8 6.39237057 8.8 15.7678474"></polyline>
+        <mask id="mask-8" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="8.8" height="9.37547684" fill="white">
+            <use xlink:href="#path-7"></use>
+        </mask>
+    </defs>
+    <g id="PROFSTYLE" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Bucket-1" transform="translate(-31.000000, -116.000000)">
+            <g id="Rectangle-10-+-Ваш-бонусный-баланс-+-4-200-+-Group" transform="translate(31.000000, 112.000000)">
+                <g id="Group">
+                    <ellipse id="Oval-3" stroke="#FFFFFF" stroke-width="3" opacity="0.2" cx="541" cy="311.095368" rx="20" ry="21.3079019"></ellipse>
+                    <ellipse id="Oval-2" stroke="#FFFFFF" stroke-width="3" cx="97" cy="98.0163488" rx="8" ry="8.52316076"></ellipse>
+                    <ellipse id="Oval-4" stroke="#FFFFFF" stroke-width="3" cx="367" cy="311.095368" rx="8" ry="8.52316076"></ellipse>
+                    <ellipse id="Oval-2" stroke="#FFFFFF" stroke-width="3" opacity="0.5" cx="378" cy="20.2425068" rx="13" ry="13.8501362"></ellipse>
+                    <rect id="Rectangle-307" fill="#FFFFFF" opacity="0.2" transform="translate(467.500000, 117.726158) rotate(-45.000000) translate(-467.500000, -117.726158) " x="456" y="105.474114" width="23" height="24.5040872"></rect>
+                    <rect id="Rectangle-308" fill="#FFFFFF" opacity="0.2" transform="translate(17.500000, 373.420981) rotate(-45.000000) translate(-17.500000, -373.420981) " x="6" y="361.168937" width="23" height="24.5040872"></rect>
+                    <rect id="Rectangle-307" fill="#FFFFFF" opacity="0.1" transform="translate(41.500000, 199.761580) rotate(-45.000000) translate(-41.500000, -199.761580) " x="36" y="193.901907" width="11" height="11.719346"></rect>
+                    <g id="Rectangle-309-+-Rectangle-310" opacity="0.4" transform="translate(134.639703, 11.905234) rotate(-315.000000) translate(-134.639703, -11.905234) translate(127.139703, 3.905234)" stroke="#FFFFFF" stroke-width="4">
+                        <use id="Rectangle-309" mask="url(#mask-2)" xlink:href="#path-1"></use>
+                        <use id="Rectangle-310" mask="url(#mask-4)" xlink:href="#path-3"></use>
+                    </g>
+                    <g id="Rectangle-309-+-Rectangle-312" opacity="0.4" transform="translate(134.639703, 310.215860) rotate(-315.000000) translate(-134.639703, -310.215860) translate(127.139703, 302.215860)" stroke="#FFFFFF" stroke-width="4">
+                        <use id="Rectangle-309" mask="url(#mask-6)" xlink:href="#path-5"></use>
+                        <use id="Rectangle-310" mask="url(#mask-8)" xlink:href="#path-7"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

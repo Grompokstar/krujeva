@@ -1,0 +1,35 @@
+.table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.table.vtop .td {
+    vertical-align: top;
+}
+
+.tr {
+    display: table-row;
+}
+
+.td {
+    display: table-cell;
+    border-spacing: 0;
+}
+
+.td.w100 {
+    width: 100%;
+}
+
+.td.h100 {
+    height: 100%;
+}
+
+.table.middle .td {
+    vertical-align: middle;
+}
+
+.td.bottom {
+    vertical-align: bottom;
+}

@@ -1,0 +1,1 @@
+alter table market.productcategories add column brandid int references market.brands(id) on delete restrict on update cascade;

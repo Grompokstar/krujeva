@@ -1,0 +1,520 @@
+#!/usr/bin/php
+<?php
+
+$PROJECT_PATH = realpath(__DIR__ . '/..');
+$ETC_PATH = '/etc/glonass';
+
+$CONFIG_NAME = null;
+
+/* Работа с версией */
+
+function getVersion($echo = false) {
+	global $PROJECT_PATH;
+
+	$version = @file_get_contents("$PROJECT_PATH/version");
+
+	if (!$version) {
+		$version = '0.0.0.0';
+	}
+
+	if ($echo) {
+		echo "$version\n";
+	}
+
+	return $version;
+}
+
+function setVersion($type) {
+	global $PROJECT_PATH;
+
+	$types = [
+		['name' => 'major', 'min' => 1, 'index' => 0],
+		['name' => 'minor', 'min' => 0, 'index' => 1],
+		['name' => 'revision', 'min' => 0, 'index' => 2],
+		['name' => 'build', 'min' => 1, 'index' => 3]
+	];
+
+	$search = array_values(array_filter($types, function ($item) use ($type) {
+		return $item['name'] == $type;
+	}));
+
+	$type = $search ? $search[0] : null;
+
+	if ($type) {
+		$version = getVersion();
+
+		if ($version) {
+			$parts = explode('.', $version);
+
+			if (count($parts) < count($types)) {
+				for ($i = count($parts); $i < count($types); $i++) {
+					$parts[$i] = $types[$i]['min'];
+				}
+			}
+
+			if (count($parts) == count($types)) {
+				$parts[$type['index']]++;
+
+				for ($i = $type['index'] + 1; $i < count($types); $i++) {
+					$parts[$i] = $types[$i]['min'];
+				}
+
+				$version = implode('.', $parts);
+
+				@file_put_contents("$PROJECT_PATH/version", $version);
+			}
+
+			getVersion(true);
+		}
+	}
+}
+
+/* Работа с элементами миграций */
+
+class Type {
+	const Table = 0;
+	const Func = 1;
+	const Index = 2;
+	const SQL = 3;
+}
+
+function typeFolder($type) {
+	switch ($type) {
+		case Type::Table:
+			return 'tables';
+		case Type::Func:
+			return 'functions';
+		case Type::Index:
+			return "indexes";
+		case Type::SQL:
+			return "sql";
+	}
+
+	return '';
+}
+
+function typeName($type) {
+	switch ($type) {
+		case Type::Table:
+			return 'table';
+		case Type::Func:
+			return 'function';
+		case Type::Index:
+			return 'index';
+		case Type::SQL:
+			return 'sql';
+	}
+
+	return '';
+}
+
+function typeTitle($type) {
+	switch ($type) {
+		case Type::Table:
+			return 'таблица';
+		case Type::Func:
+			return 'функция';
+		case Type::Index:
+			return 'индекс';
+		case Type::SQL:
+			return 'запрос';
+	}
+
+	return '';
+}
+
+function createItem($type, $name, $content = '') {
+	global $PROJECT_PATH;
+
+	list ($schemaName, ) = explode('.', $name);
+
+	$content .= "\n";
+	$typeFolder = typeFolder($type);
+	$path = $PROJECT_PATH . "/migrations/$schemaName/$typeFolder/$name";
+	$filePath = $path . '/' . date('YmdHis') . '.sql';
+
+	if (!is_dir($path)) {
+		mkdir($path, 0755, true);
+	}
+
+	echo "Создан файл: $filePath\n";
+
+	file_put_contents($filePath, $content);
+}
+
+function createTable($name, $options = []) {
+	createItem(Type::Table, $name, "create table $name (\n\tid bigserial primary key\n) without oids;");
+
+	if (isset($options['trackable']) && $options['trackable']) {
+		sleep(1);
+		createTrackable($name);
+	}
+}
+
+function createFunction($name) {
+	createItem(Type::Func, $name, "create or replace function $name()\n\treturns void as\n\$body\$\ndeclare\nbegin\n\t\nend\n\$body\$ language plpgsql;");
+}
+
+function createIndex($name) {
+	createItem(Type::Index, $name, "create index on $name();");
+}
+
+function createSQL($name, $content = '') {
+	createItem(Type::SQL, $name, $content);
+}
+
+function createTrackable($name) {
+	createSQL($name, "select trackable.init('$name');");
+}
+
+/* Миграции */
+
+function migrate($name, $fake) {
+	global $Configuration, $Connections, $Error;
+
+	if ($Error) {
+		return;
+	}
+
+	if (!$name) {
+		if (isset($Configuration['release']) && is_array($Configuration['release'])) {
+			foreach ($Configuration['release'] as $schema) {
+				migrate($schema, $fake);
+			}
+		} else {
+			echo "Не определёно, что мигрировать.\n";
+			exit;
+		}
+
+		return;
+	}
+
+	if (strpos($name, ',') !== false) {
+		$names = explode(',', $name);
+
+		foreach ($names as $name) {
+			migrate(trim($name), $fake);
+		}
+
+		return;
+	}
+
+	$migrations = readMigrations($name);
+
+	foreach ($migrations as $files) {
+		foreach ($files as $migration) {
+			foreach ($Connections as $index => $connection) {
+				initMigrationSchema($connection);
+
+				if (!migrationConfirmed($connection, $migration['name'], $migration['file'], $migration['type'])) {
+					if (!$fake) {
+						createObjectSchema($connection, $migration['name']);
+					}
+
+					echo "Сервер $index: " . typeTitle($migration['type']) . " {$migration['name']}, {$migration['file']}...";
+
+					if (!$fake) {
+						$sql = file_get_contents($migration['filePath']);
+
+						if (@pg_query($connection, $sql)) {
+							confirmMigration($connection, $migration['name'], $migration['file'], $migration['type'], $sql);
+
+							echo " ok.\n";
+						} else {
+							$Error = true;
+							echo " FAILED. " . pg_last_error($connection) . "\n";
+							return;
+						}
+					} else {
+						echo "ok.\n";
+					}
+				}
+			}
+		}
+	}
+
+	echo "Схема `$name` завершена.\n";
+}
+
+function namespaceExists($connection, $name) {
+	if ($res = pg_query_params($connection, 'select * from pg_namespace where nspname = $1', [$name])) {
+		return pg_num_rows($res) > 0;
+	}
+
+	return false;
+}
+
+function initMigrationSchema($connection) {
+	if (!namespaceExists($connection, 'migrations')) {
+		pg_query($connection, 'create schema migrations');
+		pg_query($connection, 'create table migrations.migrations(id serial primary key, name varchar, file varchar, type varchar, content text, datetime timestamp with time zone default current_timestamp)');
+		pg_query($connection, 'create unique index on migrations.migrations(name, file, type)');
+
+		echo "Схема миграций инициализирована.\n";
+	}
+}
+
+function migrationConfirmed($connection, $name, $file, $type) {
+	$res = pg_query_params($connection, 'select id from migrations.migrations where name = $1 and file = $2 and type = $3', [$name, $file, typeName($type)]);
+
+	return pg_num_rows($res) > 0;
+}
+
+function confirmMigration($connection, $name, $file, $type, $content) {
+	pg_query_params($connection, 'insert into migrations.migrations(name, file, type, content) values($1, $2, $3, $4)', [$name, $file, typeName($type), $content]);
+}
+
+function createObjectSchema($connection, $name) {
+	list ($schema, $exists) = getObjectSchema($connection, $name);
+
+	if (!$exists) {
+		pg_query($connection, "create schema $schema");
+		echo "Схема $schema создана.\n";
+	}
+
+	return $schema;
+}
+
+function getObjectSchema($connection, $name) {
+	$items = explode('.', $name);
+	$exists = true;
+	$schema = 'public';
+
+	if (count($items) > 1) {
+		$schema = $items[0];
+
+		$res = pg_query_params($connection, 'select * from pg_namespace where nspname = $1', [$schema]);
+
+		if (pg_num_rows($res) == 0) {
+			$exists = false;
+		}
+	}
+
+	return [$schema, $exists];
+}
+
+/* Утилиты */
+
+function error($message) {
+	echo "Ошибка: $message\n";
+	exit;
+}
+
+function checkOpt($opts, $short, $long, $required = false) {
+	if ($short && isset($opts[$short])) {
+		return $opts[$short] === false ? ($required ? false : true) : $opts[$short];
+	}
+
+	if ($long && isset($opts[$long])) {
+		return $opts[$long] === false ? ($required ? false : true) : $opts[$long];
+	}
+
+	return false;
+}
+
+function readConfiguration($path) {
+	if (is_file($path)) {
+		return json_decode(file_get_contents($path), true);
+	}
+
+	return null;
+}
+
+function readMigrations($name) {
+	global $PROJECT_PATH;
+
+	$migrations = [];
+
+	$path = $PROJECT_PATH . "/migrations/$name";
+
+	foreach ([Type::Table, Type::Func, Type::Index, Type::SQL] as $type) {
+		$typePath = "$path/" . typeFolder($type);
+
+		if (is_dir($typePath) && $typeDir = opendir($typePath)) {
+			while ($object = readdir($typeDir)) {
+				$objectPath = "$typePath/$object";
+
+				if (in_array($object, ['.', '..']) || !is_dir($objectPath)) {
+					continue;
+				}
+
+				if ($objectDir = opendir($objectPath)) {
+					while ($file = readdir($objectDir)) {
+						$filePath = "$objectPath/$file";
+
+						if (!preg_match('/.+\.sql$/i', $file) || !is_file($filePath)) {
+							continue;
+						}
+
+						if (!isset($migrations[$file])) {
+							$migrations[$file] = [];
+						}
+
+						$migrations[$file][] = ['name' => $object, 'file' => $file, 'type' => $type, 'path' => $objectPath, 'filePath' => $filePath];
+					}
+
+					closedir($objectDir);
+				}
+			}
+
+			closedir($typeDir);
+		}
+	}
+
+	ksort($migrations);
+
+	return $migrations;
+}
+
+// Main
+
+date_default_timezone_set("Europe/Moscow");
+
+echo "\nДиректория проекта: " . $PROJECT_PATH . "\n\n";
+
+$shortOpts = 'hc:t:f:i:s:';
+$longOpts = ['help', 'config:', 'migrate::', 'check::', 'table:', 'function:', 'index:', 'unique', 'sql:', 'trackable::', 'version::', 'release'];
+
+$opts = getopt($shortOpts, $longOpts);
+
+$helpText = <<<HELP
+Использование: ctl [опции]
+Опции:
+    -h, --help               Эта справка.
+
+    -c, --config=name        Конфигурация.
+
+    --migrate[=schema]       Выполнить миграции.
+    --check[=schema]         Проверить миграции.
+
+    -t, --table=name         Создать файл миграции для таблицы.
+    -f, --function=name      Создать файл миграции для функции.
+    -i, --index=name         Создать файл миграции для индекс.
+    --sql name               Создать файл миграции для sql-скрипта.
+    --trackable=name         Создать файл миграции с sql-скриптом,
+                              инициализирующим указанную таблицу как trackable.
+                              Может быть использовано совместо с '-t'.
+
+    --version[=version]      Получить или установить версию.
+    --release                Залить на git-сервер тэг с текущей версией.
+
+Примеры:
+
+Создать таблицу security.users.
+ctl -t security.users --config=test
+
+Создать функцию sessions.read.
+ctl -f sessions.read --config=test
+
+Проверить наличие невыполненных миграций.
+ctl --check --config=test
+
+Выполнить миграции только из схемы security.
+ctl --migrate=security --config=test
+
+Выполнить все миграции.
+ctl --migrate --config=test
+
+
+HELP;
+
+if (checkOpt($opts, 'h', 'help')) {
+	echo $helpText;
+	exit;
+}
+
+if ($name = checkOpt($opts, null, 'version')) {
+	if ($name === true) {
+		getVersion(true);
+	} else {
+		setVersion($name);
+	}
+
+	exit;
+}
+
+if (checkOpt($opts, null, 'release')) {
+	exec("cd $PROJECT_PATH && git tag `cat version` && git push --tags");
+	exit;
+}
+
+if ($name = checkOpt($opts, 'c', 'config', true)) {
+	$CONFIG_NAME = $name;
+}
+
+if (!$CONFIG_NAME) {
+	echo "Не хватает опции --config\n\n$helpText";
+	exit;
+}
+
+$config_file = "$ETC_PATH/migrations/$CONFIG_NAME.json";
+
+if (!file_exists($config_file) || !is_readable($config_file)) {
+	$config_file = "$PROJECT_PATH/migrations/$CONFIG_NAME.json";
+}
+
+echo "Файл конфигурации: $config_file\n\n";
+
+$Configuration = readConfiguration($config_file);
+$Connections = [];
+$Error = false;
+
+if (!$Configuration) {
+	echo "Не смог прочитать конфигурацию.\n";
+	exit;
+}
+
+if (!$Configuration['servers']) {
+	echo "Куда мигрировать?\n";
+	exit;
+}
+
+foreach ($Configuration['servers'] as $index => $connectionString) {
+	if (!$connection = pg_connect($connectionString)) {
+		echo "Postgresql не доступен ($index).\n";
+		exit;
+	}
+
+	$Connections[] = $connection;
+
+	break;
+}
+
+function query($query) {
+	global $Connections;
+
+	foreach ($Connections as $index => $connection) {
+		if (!pg_query($connection, $query)) {
+			echo "Не могу выполнить '$query' на $index. " . pg_last_error($connection) . "\n";
+			exit;
+		}
+	}
+}
+
+if ($name = checkOpt($opts, null, 'migrate')) {
+	query('begin');
+
+	migrate($name === true ? null : $name, false);
+
+	if ($Error) {
+		query('rollback');
+		echo "Отменено.\n";
+	} else {
+		query('commit');
+		echo "Завершено.\n";
+	}
+} else if ($name = checkOpt($opts, null, 'check')) {
+	migrate($name === true ? null : $name, true);
+} else if ($name = checkOpt($opts, 'f', 'function', true)) {
+	createFunction($name);
+} else if ($name = checkOpt($opts, 't', 'table', true)) {
+	createTable($name, [ 'trackable' => checkOpt($opts, null, 'trackable') ]);
+} else if ($name = checkOpt($opts, 'i', 'index', true)) {
+	createIndex($name);
+} else if ($name = checkOpt($opts, null, 'sql', true)) {
+	createSQL($name);
+} else if ($name = checkOpt($opts, null, 'trackable', true)) {
+	createTrackable($name);
+} else {
+	echo "Не знаю, что делать.\n";
+}

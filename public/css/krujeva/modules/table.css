@@ -1,0 +1,32 @@
+.table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+.tr {
+    display: table-row;
+}
+
+.td {
+    display: table-cell;
+    border-spacing: 0;
+    vertical-align: top;
+}
+
+.td.w100 {
+    width: 100%;
+}
+
+.h100 {
+    height: 100%;
+}
+
+.table.middle .td {
+    vertical-align: middle;
+}
+
+.td.bottom {
+    vertical-align: bottom;
+}

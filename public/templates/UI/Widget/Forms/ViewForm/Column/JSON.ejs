@@ -1,0 +1,12 @@
+<% var data = item[column.name] %>
+<%
+
+try {
+	var object = JSON.parse(data);
+	data = JSON.stringify(object, null, "\t");
+} catch (e) {
+	console.log("JSON.parse failed", e);
+}
+
+%>
+<textarea class="w100" readonly <%= Html.attribute("rows", column.rows) %>><%= data %></textarea>

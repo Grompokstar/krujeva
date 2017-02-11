@@ -1,0 +1,21 @@
+[Unit]
+Description=websocket messages module
+After=syslog.target network.target remote-fs.target 
+
+[Service]
+User=nginx
+Group=nginx
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=market-message
+TimeoutStartSec=10s
+ExecStart=/usr/bin/node /usr/local/www/hairmarket/nodejs/message/application.js --mp=11008 --wp=11007 --mode=redis --storage=redis --channel=MARKET.EVENTS --tag=__SecurityContext
+Environment=NODE_PATH=/usr/lib/node_modules
+Restart=always
+RestartSec=60s
+
+[Install]
+WantedBy=multi-user.target
+
+
+

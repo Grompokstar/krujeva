@@ -1,0 +1,30 @@
+.txt-wrp {
+    position: relative;
+}
+
+.txt-pre {
+    margin: 0;
+    visibility: hidden;
+    border-style: solid;
+}
+
+.txt-pre,
+.txt-pre + textarea {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    padding: 10px 12px;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    box-sizing: border-box;
+}
+
+.txt-pre + textarea {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    -webkit-appearance: none;
+    overflow-y: scroll;
+}

@@ -1,0 +1,50 @@
+
+.menuContainer .tr:active {
+    background: rgba(255, 255, 255, .2);
+}
+
+.dealer-brand-item:active {
+    background: rgba(0, 0, 0, 0.07);
+}
+
+button:active {
+    background: var(--cardHrColor);
+}
+
+.svrarrow:active,
+.svgmenu:active,
+.svgbasket:active {
+    opacity: 0.5;
+}
+
+.input-view:active {
+    background: color(var(--lineColorNormal) opacity(.5));
+}
+
+.region-item:active {
+    background: color(var(--lineColorNormal) opacity(.5));
+}
+
+.region-item:active:before,
+.region-item:active + .region-item:before {
+    display: none;
+}
+
+.menuContent .tr:active {
+    background: rgba(255, 255, 255, .2);
+}
+
+
+.product-item.no-active:active {
+    background: none !important;
+}
+
+.buy-btn-product:active {
+    background: var(--mainColor);
+}
+
+.count-product-minus:active,
+.count-product-plus:active {
+    background: var(--mainColor);
+    color: #fff;
+}

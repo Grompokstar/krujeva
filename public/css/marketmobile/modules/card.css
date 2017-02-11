@@ -1,0 +1,257 @@
+.card {
+    border: 1px solid #e2e0e1;
+}
+
+.cart-clear {
+    background: white;
+    margin-bottom: var(--paddingCard);
+    box-shadow: 0 0 1px rgba(0, 0, 0, .15);
+}
+
+.full-absolute-list {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.cart-before-title {
+    color: #727377;
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-left: 13px;
+}
+
+.card-label {
+	font-size: 9px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+
+	color: var(--textColorDisabled);
+	width: 100%;
+}
+
+.card-title {
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #777;
+}
+
+.card-title.header-title {
+    padding: 17px 0;
+}
+
+.card-content {
+	padding: var(--paddingCard);
+}
+
+.card-item {
+	margin-bottom: 15px;
+}
+.card-item-last {
+	margin-bottom: 0;
+}
+.item-img {
+	width: 60px;
+	height: 60px;
+}
+.item-img > img {
+    width: 60px;
+    display: block;
+    border-radius: 50%;
+
+    border: 1px solid #EFEFEF;
+}
+
+.item-description {
+	padding-left: 15px;
+	vertical-align: middle;
+}
+.card-footer {
+	border-top: 1px solid #E3E3E3;
+	height: 70px;
+    background: #FAFAFA;
+}
+.card-header {
+    margin: 0 20px;
+	border-bottom: 2px solid var(--cardHrColor);
+}
+.card-header .td {
+	padding: var(--paddingCard);
+}
+.card-footer .td {
+	padding: 20px 13px;
+	max-width: 70px;
+}
+.card-content-title {
+    padding-left: 20px;
+    padding-top: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.card-arrow {
+	width: 10px;
+    vertical-align: middle;
+}
+
+.card-padding {
+	padding: var(--paddingCard);
+}
+
+.dealer-brand-item {
+    padding: 10px 13px;
+}
+
+
+
+.dealer-brands-cnt {
+    padding: 20px 0;
+}
+
+.no-dealers {
+    color: #8C827B;
+    font-size: 17px;
+    text-align: center;
+}
+
+.img-dealer-error img {
+    width: 150px;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 40px;
+}
+
+.login-page-svg-icon {
+    width: 50%;
+    margin: 0 auto 30px auto;
+}
+
+.dealer-header {
+    background: transparent;
+}
+
+.dealer-blue-cnt {
+    background: -moz-linear-gradient(top, #0288D1 0%, #02B7D1 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #0288D1 0%, #02B7D1 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #0288D1 0%, #02B7D1 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+    padding: 70px 0 40px 0;
+    color: #fff;
+    text-align: center;
+}
+
+.dealer-company-name {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.dealer-address-txt{
+    color: rgba(255,255,255, .7);
+    font-size: 14px;
+    padding: 5px 13px 0 13px;
+}
+
+.dealer-call-btn {
+   margin-top: 25px;
+   border: 1px solid #fff;
+   border-radius: 100px;
+   height: 45px;
+   line-height: 45px;
+   vertical-align: middle;
+
+    min-width: 130px;
+   padding: 0 60px;
+    color: #fff;
+
+   display: inline-block;
+}
+
+.dealer-info-brands {
+    background: #fff;
+    padding: 30px 0;
+}
+
+.dealer-info-footer {
+    width: 200px;
+    margin: 0 auto;
+}
+
+.dealer-info-footer .td {
+    vertical-align: middle;
+    color: rgba(0,0,0, .5);
+    font-size: 13px;
+}
+
+.dealer-info-ruble {
+    width: 40px;
+    text-align: right;
+}
+
+.dealer-info-ruble-desc {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.dealer-info-footer-padding{
+    padding: 15px 0;
+}
+
+.dealer-info-footer-main {
+    border-top: 1px solid #E3E3E3;
+    background: #FAFAFA;
+}
+
+.ruble-icon {
+    background: url('/public/img/rubl.svg') no-repeat;
+    width: 21px;
+    height: 20px;
+    display: inline-block;
+}
+
+
+
+.bonus-balance-value {
+    font-size: 70px;
+    font-weight: 600;
+}
+
+.bonus-balance-name {
+    color: rgba(255, 255, 255, .9);
+    font-size: 40px;
+    margin-top: -10px;
+}
+
+.balance-blue-cnt {
+    padding: 70px 0 80px 0;
+}
+
+.bg-balance-bonus {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    background: url('/public/img/balancebg.svg') 0 30px no-repeat;
+    background-position: center 30px;
+}
+
+.bg-bottom-balance {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 60px;
+
+    background: url('/public/img/bonuscloud.svg') 0 30px no-repeat;
+    background-position: center 0;
+    background-size: cover;
+}

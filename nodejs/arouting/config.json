@@ -1,0 +1,4 @@
+{
+	"connection": "postgres://osm:osm@188.40.75.212:5432/osm",
+	"port": 9092
+}

@@ -1,0 +1,24 @@
+<div style="position: absolute; top:0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0, .6); z-index: 1000; display: flex;"
+	 onclick="$(this).remove()">
+
+	<style>
+		.file-container {
+			margin: 40px;
+
+			flex: 1;
+			align-items: center;
+			align-content: center;
+			justify-content: center;
+			display: inherit;
+		}
+
+		.file-container img {
+			max-width: 100%;
+		}
+	</style>
+
+	<div class="file-container">
+		<% var file = widget.files[index]; %>
+		<img src="<%= file.src %>"/>
+	</div>
+</div>

@@ -1,0 +1,262 @@
+html, body {
+    font-size: 14px;
+}
+
+.mobile-padding {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.mobile-header {
+    background: #f7f3ee;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.m-h-right-block {
+    text-align: right;
+}
+
+.m-info-h-title {
+    color: rgba(0,0,0, .5);
+    margin-bottom: 14px;
+}
+
+.m-info-h-desc {
+    margin-bottom: 8px;
+}
+
+.mobile-header-logo-cnt {
+    text-align: center;
+    padding-top: 35px;
+    padding-bottom: 55px;
+}
+
+.mobile-header-logo-cnt .logo {
+    margin: 0 !important;
+}
+
+.mobile-menu {
+    background: #f7f3ee;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.mobile-ul-menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-ul-menu li {
+    position: relative;
+    padding: 3px 0;
+}
+
+.mobile-ul-menu a {
+    border: 5px solid transparent;
+
+    height: 50px;
+    line-height: 50px;
+    padding: 0 25px;
+
+    vertical-align: middle;
+
+    display: block;
+
+    font-size: 16px;
+    text-transform: uppercase;
+
+    color: #9a9894;
+    text-decoration: none;
+    text-align: center;
+}
+
+.mobile-ul-menu li:hover a,
+.mobile-ul-menu li.active a {
+    -moz-border-image: url('/public/img/hover.jpg') 5 round round;
+    -webkit-border-image: url('/public/img/hover.jpg') 5 round round;
+    -o-border-image: url('/public/img/hover.jpg') 5 round round;
+    border-image: url('/public/img/hover.jpg') 5 round round;
+
+    border-color: #9a9894;
+    border-style: inset;
+    border-width: 5px;
+    border-image-width: 5px;
+}
+
+.mobile-ul-menu li.active a {
+    color: #000;
+}
+
+.mobile-slider {
+    background: #f7f3ee;
+    position: relative;
+}
+
+.mobile-slider-photo {
+    height: 195px;
+
+    background: url('/public/img/slide.jpg');
+    background-size: cover;
+}
+
+
+.m-inner-slide {
+    width: 100%;
+}
+
+.m-slider-title {
+    font-family: var(--boldSize);
+    font-size: 20px;
+    letter-spacing: 1.1px;
+}
+.slider-padding {
+    padding: 30px 24px;
+}
+
+.m-slider-desc {
+    padding-top: 6px;
+}
+
+.m-slider-btn {
+    margin-top: 30px;
+    text-transform: uppercase;
+
+    display: inline-block;
+    padding: 10px 17px;
+    border: 4px solid #eee3da;
+    position: relative;
+}
+
+.m-slider-btn a {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.m-slider-btn:hover {
+    background: #eee3da;
+}
+
+.mobile-slider .swiper-pagination {
+    position: absolute;
+    top: 170px;
+    left: 0;
+    right: 0;
+}
+
+.mobile-slider .swiper-pagination .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    border-radius: 100%;
+    background: transparent;
+    border: 2px solid #fff;
+    opacity: 1;
+    margin: 0 2px;
+}
+
+.mobile-slider .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background: #fff;
+}
+
+.m-inner-slide {
+    text-align: center;
+}
+
+.mobile-title {
+    text-transform: uppercase;
+    text-align: center;
+    font-family: var(--boldSize);
+    font-size: 18px;
+    letter-spacing: 1.1px;
+}
+
+.mobile-about-company {
+    padding: 30px 0;
+}
+.m-about-text {
+    padding: 30px 15px;
+    line-height: 1.55;
+    font-size: 15px;
+}
+
+.m-about-img {
+    height: 215px;
+    background: url('/public/img/about2.jpg') no-repeat;
+    background-size: cover;
+}
+
+.m-about-img-2 {
+    height: 350px;
+    background: url('/public/img/about3.jpg') no-repeat;
+    background-size: cover;
+}
+
+.mobile-gallery {
+    padding: 30px 0 0 0;
+}
+
+.mobile-gallery figure {
+    height: 120px;
+}
+
+.m-photos-cnt .table {
+    height: 120px;
+}
+
+.mobile-rewiew {
+    padding: 60px 0;
+    background: var(--bgColor);
+}
+
+.mobile-rewiew-block {
+    margin: 25px 15px;
+    background: #fff;
+}
+
+.mobile-photo-rewiew {
+    background: url('/public/img/review_av.jpg') no-repeat;
+    background-size: cover;
+}
+
+.mobile-photo-rewiew {
+    height: 200px;
+}
+.mobile-text-rewiew {
+    padding: 22px;
+}
+
+.mobile-title-rewiew {
+    font-family: var(--boldSize);
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.mobile-text-rewiew {
+    line-height: 1.55;
+    font-size: 15px;
+}
+
+.mobile-rewiew .m-slider-btn {
+    margin: 0;
+}
+
+.m-rewiew-btn-cnt{
+    text-align: center;
+}
+
+.mobile-map {
+    height: 320px;
+}
+
+.mobile-address-footer {
+    background: var(--bgColor);
+    padding: 30px 0;
+    text-align: center;
+    color: rgba(0,0,0, .5);
+}

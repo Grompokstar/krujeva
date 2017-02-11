@@ -1,0 +1,178 @@
+.contacts {
+    padding: 0 0 120px 0;
+}
+
+.contacts-left {
+    height: 400px;
+    background: #f7f3ee;
+
+    padding: 40px;
+}
+
+.contacts-title {
+    font-size: 24px;
+    text-transform: uppercase;
+    font-family: var(--boldSize);
+    margin-bottom: 45px;
+}
+
+.cnt-row {
+    font-size: 22px;
+    margin-bottom: 35px;
+    line-height: 1.55;
+}
+
+.contacts-right {
+    padding: 40px 20px;
+}
+
+.contacts .td.td-left-main,
+.contacts .td.td-right-main
+{
+    vertical-align: top;
+    width: 50%;
+}
+
+.contacts-right .contacts-title {
+    padding: 0 20px;
+}
+
+.contacts-form-row  {
+    margin-bottom: 22px;
+}
+
+.contacts-form-row label {
+    color: rgba(0,0,0, .4);
+    font-size: 16px;
+    text-transform: uppercase;
+    display: block;
+    padding-left: 20px;
+    margin-bottom: 5px;
+}
+
+.contacts-form-row input,
+.contacts-form-row textarea
+{
+    height: 50px;
+    border: 1px solid #e2d6c7;
+    padding-left: 20px;
+    width: 300px;
+    font-size: 16px;
+
+    resize: none;
+}
+
+.contacts-form-row textarea {
+    padding: 10px 20px;
+    height: 90px;
+    width: 430px;
+}
+
+.contacts-form-row input:focus,
+.contacts-form-row textarea:focus
+{
+    outline: none;
+}
+
+.contacts-desc {
+    font-family: var(--italicSize);
+    font-style: italic;
+    font-size: 12px;
+    color: rgba(0,0,0, .5);
+}
+
+.contacts-btn {
+    display: inline-block;
+    height: 37px;
+    font-size: 16px;
+    padding: 0 35px;
+    line-height: 37px;
+    vertical-align: middle;
+
+    border: 1px solid #e2d6c7;
+    box-shadow: 0 5px 25px rgba(252, 70, 30, .15);
+}
+
+.contacts-btn:hover {
+    cursor: pointer;
+    box-shadow: 0 5px 25px rgba(252, 70, 30, .25);
+}
+
+.contacts-form-table {
+    width: 430px;
+    vertical-align: middle;
+}
+
+.contacts-form-table .td-left {
+    width: 100%;
+    padding-left: 20px;
+}
+
+.contacts-form-table .td-right {
+    text-align: right;
+    width: 0;
+}
+
+.table-contacts-main .td-left-main {
+    padding-right: 10px;
+}
+
+.table-contacts-main .td-right-main {
+    padding-left: 10px;
+}
+
+.mobile-contacts-form {
+    padding: 30px 15px;
+}
+
+.m-cnt-text {
+    background: #f7f3ee;
+    padding: 20px;
+}
+
+.m-cnt-title {
+    font-family: var(--boldSize);
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+.m-contacts-form .m-cnt-title  {
+    padding-left: 10px;
+}
+
+.m-cnt-row {
+    margin-bottom: 18px;
+    font-size: 16px;
+    line-height: 1.55;
+}
+
+.m-contacts-form {
+    padding: 30px 10px;
+}
+
+.m-contacts-form-row {
+    margin-top: 15px;
+}
+
+.m-contacts-form-row label {
+    color: rgba(0,0,0, .4);
+    text-transform: uppercase;
+    display: block;
+    padding-left: 10px;
+    margin-bottom: 6px;
+}
+
+
+.m-contacts-form-row input,
+.m-contacts-form-row textarea {
+    height: 50px;
+    border: 1px solid #e2d6c7;
+    padding-left: 10px;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 0;
+    box-shadow: none;
+
+    resize: none;
+}

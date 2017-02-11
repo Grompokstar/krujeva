@@ -1,0 +1,25 @@
+<div class="table price-block" name="price-<%= index%>">
+
+    <div class="tr">
+        <div class="td">
+
+            <div class="price-edit-admin-row">
+                <label>Объем</label>
+                <input type="text" name="volume" value="<%= data && data.volume ? data.volume : ''  %>"/>
+            </div>
+
+        </div>
+        <div class="td">
+            <div class="price-edit-admin-row">
+                <label>Цена</label>
+                <input type="text" name="price" value="<%= data && data.price ? data.price : ''  %>"/>
+            </div>
+        </div>
+        <div class="td">
+            <div class="link-create-new">
+                <a href="javascript://" on-click="removePriceClick" data-index="<%= index%>">Удалить цену</a>
+            </div>
+        </div>
+    </div>
+
+</div>

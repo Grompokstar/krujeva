@@ -1,0 +1,5 @@
+<textarea
+	data-column="<%= column.name %>"
+	class="w100"
+	on-change="onTextColumnChange"
+	><%= Html.encode(widget.item[column.name] === undefined ? "" : widget.item[column.name]) %></textarea>

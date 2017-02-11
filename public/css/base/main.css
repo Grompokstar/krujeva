@@ -1,0 +1,76 @@
+@import "font.css";
+@import "loader.css";
+@import "flex.css";
+@import "keyboard.css";
+@import "numkeyboard.css";
+@import "popup.css";
+
+html,
+body {
+    font-weight: normal;
+}
+
+body, html, .main-container {
+    width: 100%;
+    height: 100%;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+.bbox {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.scroll::-webkit-scrollbar,
+.dynatree-container::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+/* Track */
+.scroll::-webkit-scrollbar-track,
+.dynatree-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, .05);
+    border-radius: 2px;
+}
+
+/* Handle */
+.scroll::-webkit-scrollbar-thumb,
+.dynatree-container::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    min-height: 50px;
+    background: rgba(0, 0, 0, .25);
+}
+
+.hidden-scroll {
+
+}
+
+.hidden-scroll::-webkit-scrollbar {
+    width: 0;
+}
+
+/* Track */
+.hidden-scroll::-webkit-scrollbar-track {
+    /*box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+    /*border-radius: 5px;*/
+}
+
+/* Handle */
+.hidden-scroll::-webkit-scrollbar-thumb {
+    /*border-radius: 4px;*/
+    /*min-height: 300px;*/
+    /*background: rgba(186, 187, 185, 0.75);*/
+}
+
+.hidden-scroll::-webkit-scrollbar-thumb:window-inactive {
+    /*background: rgba(186, 187, 185, 0.15);*/
+}

@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'gotham_promedium';
+    src: url('/fonts/GothaProMed.eot');
+    src: url('/fonts/GothaProMed.eot?#iefix') format('embedded-opentype'), url('/fonts/GothaProMed.woff2') format('woff2'), url('/fonts/GothaProMed.woff') format('woff'), url('/fonts/GothaProMed.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'gotham_proregular';
+    src: url('/fonts/GothaProReg.eot');
+    src: url('/fonts/GothaProReg.eot?#iefix') format('embedded-opentype'), url('/fonts/GothaProReg.woff2') format('woff2'), url('/fonts/GothaProReg.woff') format('woff'), url('/fonts/GothaProReg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+input, select, textarea, label, button {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: inherit;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: 'gotham_proregular';
+    font-weight: normal;
+    line-height: normal;
+}

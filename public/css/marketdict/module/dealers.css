@@ -1,0 +1,73 @@
+.dealer-areas {
+    margin-top: 20px;
+}
+
+.dealer-region {
+    border: 3px dashed #e5e5e5;
+    padding: 25px;
+    border-radius: 4px;
+    margin-bottom: 30px;
+}
+
+.dealer-region-item {
+    color: #666;
+    text-align: center;
+    padding: 20px;
+}
+
+.dealer-brands-item {
+    margin: 0 20px;
+    text-align: center;
+}
+
+.dealer-brand {
+    margin-right: 10px;
+    padding: 10px;
+    background: #F3F5D4;
+    border-radius: 2px;
+    display: inline-block;
+}
+
+.dealer-edit-user-data {
+    padding: 1px 25px 25px 25px;
+    background: #F3F5D4;
+    border-radius: 2px;
+    display: inline-block;
+    margin-top: 25px;
+}
+
+.dealer-form {
+    width: 820px;
+    padding-bottom: 100px;
+}
+
+.products-price-form {
+    background: #F3F4F6;
+    padding: 25px;
+}
+
+.dealer-name {
+    font-size: 20px;
+}
+
+.dealer-address {
+    margin-top: 20px;
+    color: #666;
+    font-weight: 100;
+}
+
+.dealer-phone {
+    color: #666;
+    font-weight: 100;
+    margin-top: 10px;
+}
+
+.dealer-item-block-price {
+    margin: 35px 25px;
+}
+
+.dealer-additional-info {
+    background: #F7F5DC;
+    padding: 1px 25px 25px 25px;
+    margin: 40px 0;
+}

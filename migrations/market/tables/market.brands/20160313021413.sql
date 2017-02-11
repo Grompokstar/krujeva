@@ -1,0 +1,1 @@
+alter table market.brands add column code varchar;

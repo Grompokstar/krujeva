@@ -1,0 +1,1 @@
+create index on market.dealerprices(dealerbrandid, productid);

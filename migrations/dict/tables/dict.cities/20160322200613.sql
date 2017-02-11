@@ -1,0 +1,1 @@
+alter table dict.cities add column timezone varchar;

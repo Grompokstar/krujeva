@@ -1,0 +1,67 @@
+.mini-logo {
+    height: 60px;
+    background: #0288D1;
+
+    padding-top: 20px;
+    padding-left: 30px;
+
+    box-shadow: 5px 5px 20px rgba(2, 136, 209, .3);
+}
+
+.menu-form {
+    width: 230px;
+    border-right: 1px solid #DEE2E9;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    overflow-y: auto;
+
+    background: #F6F8FB;
+}
+
+.menu-item.active {
+    font-weight: bold;
+    color: #000;
+}
+
+.menu-items {
+    padding: 40px 0 0 40px;
+}
+
+.menu-title {
+    color: #A4A7AB;
+    font-size: 14px;
+    font-weight: 100;
+}
+
+.menu-item {
+    color: #5B7085;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    color: #F15265;
+}
+
+.new-orders-count {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    margin-top: -12px;
+
+    width: 24px;
+    height: 24px;
+
+    font-size: 11px;
+    border-radius: 50%;
+    color: #fff;
+    background: #FF7A69;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 24px;
+}

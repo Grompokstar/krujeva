@@ -1,0 +1,11 @@
+#!/bin/sh
+
+now="$(date +'%d_%m_%Y')"
+
+file="hairmarketfiles_${now}.zip"
+
+zip -r ${file} /usr/local/www/partner.kvik-club.ru/public/files
+
+sshpass -p 'wa344474' scp ${file} root@62.109.4.208:/root/dump/
+
+rm -rf ${file}

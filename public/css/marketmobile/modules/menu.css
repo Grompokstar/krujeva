@@ -1,0 +1,152 @@
+.menu-container {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    width: 100%;
+
+    overflow: hidden;
+    background: url('/public/img/menu_bg.jpg') no-repeat;
+    background-size: cover;
+    background-position: 92% 100%;
+    z-index: 1;
+
+    color: rgba(255,255,255, .8);
+}
+
+
+.menuHeader {
+	height: 70px;
+}
+
+.menuHeader .td.right {
+	min-width: 60px;
+	padding-top: 10px;
+	padding-right: 10px;
+}
+.menuHeader .td.left {
+	position: relative;
+	width: 100%;
+}
+.menuHeader .left .title {
+	text-align: left;
+
+	position: absolute;
+	top: 5px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+
+	padding-top: 10px;
+	padding-left: 10px;
+	font-size: var(--titleFontSize);
+}
+.menuContent .tr {
+	height: 55px;
+}
+.menuContent .td.left,
+.menuContent .td.right {
+	width: 0;
+}
+.menuContent .td.center {
+	width: 100%;
+	position: relative;
+}
+.menuContent .td {
+	vertical-align: middle;
+}
+
+.menuContent .center .title {
+	text-align: left;
+	line-height: 55px;
+
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 10px;
+
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 100;
+    letter-spacing: 1px;
+}
+
+.menuContent .td.right {
+	padding-right: 10px;
+}
+.menuContent .td.right .notification {
+	border-radius: 25px;
+	background: var(--mainColor);
+	color: white;
+
+	padding: 2px 10px;
+	text-align: center;
+}
+/*.menuFooter {
+	padding: 10px;
+	text-align: center;
+	text-transform: uppercase;
+	border-top: 2px solid black;
+}*/
+
+.svgsetting {
+	background: url("/public/img/setting.svg?2") 0 0 no-repeat;
+	background-position: 44px 8px;
+
+	width: 60px;
+	height: 50px;
+}
+.svgcatalog {
+	background: url("/public/img/catalog.svg?2") 0 0 no-repeat;
+	background-position: 10px 16px;
+
+	width: 30px;
+	height: 50px;
+}
+.svgbasketmenu {
+	background: url("/public/img/basket-menu.svg?2") 0 0 no-repeat;
+	background-position: 10px 14px;
+
+	width: 30px;
+	height: 50px;
+}
+.svghistory {
+	background: url("/public/img/history.svg?2") 0 0 no-repeat;
+	background-position: 10px 16px;
+
+	width: 30px;
+	height: 50px;
+}
+
+.svgmenugift {
+    background: url("/public/img/menugift.svg?2") 0 0 no-repeat;
+    background-position: 10px 16px;
+
+    width: 30px;
+    height: 50px;
+}
+
+.svgmenuappupdate {
+    background: url("/public/img/menu-app-update.svg?5") 0 0 no-repeat;
+    background-position: 4px 11px;
+
+    width: 30px;
+    height: 50px;
+}
+
+.menu-update-version {
+    color: #FFCC01;
+}
+
+.menu-update-version .notification {
+    background: #FFCC01 !important;
+}
+
+.pbottom-260 {
+    padding-bottom: 260px !important;
+}

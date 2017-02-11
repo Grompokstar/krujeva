@@ -1,0 +1,1 @@
+alter table market.dealers add column ogrn varchar;

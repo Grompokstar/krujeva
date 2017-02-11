@@ -1,0 +1,7 @@
+<div>
+	<% Util.each(widget.files, function(file) { %>
+
+		<img src="<%=file.src%>" width="<%= file.width %>" class="img-preview" index="<%= file.index %>" on-click="showImageClicked"/>
+
+	<% }) %>
+</div>
