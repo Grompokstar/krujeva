@@ -2,12 +2,3 @@ sftp-config.json
 *.iml
 .idea
 .idea/
-.realsync
-.DS_Store
-/public/cache/
-/public/cache/*
-/public/photos/
-/public/photos/*
-/public/files/
-/public/files/*
-/configuration/production.json
